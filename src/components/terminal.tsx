@@ -87,7 +87,7 @@ export function Terminal() {
       const navHistory = commandHistory.slice(-5);
       const newSuggestions = await getCommandSuggestions(inputValue, navHistory);
       setSuggestions(newSuggestions);
-    }, 300);
+    }, 150);
     return () => clearTimeout(handler);
   }, [inputValue, commandHistory, isProcessing]);
 
