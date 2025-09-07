@@ -6,7 +6,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
-import React, { useEffect, useState, useRef, useCallback } from 'react';
+import React, { useEffect, useRef, useCallback } from 'react';
 import { projects } from '@/lib/information';
 
 interface ProjectsOutputProps {
@@ -14,27 +14,23 @@ interface ProjectsOutputProps {
 }
 
 export function ProjectsOutput({ onComplete }: ProjectsOutputProps) {
-    const [typedDescriptions, setTypedDescriptions] = useState<Record<string, boolean>>({});
     const onCompleteRef = useRef(onComplete);
     onCompleteRef.current = onComplete;
 
-    const descriptionsToType = projects.length;
     const completedCountRef = useRef(0);
+    const typedRef = useRef<Set<number>>(new Set());
+    const descriptionsToType = projects.length;
     
-    const allDescriptionsTyped = completedCountRef.current === descriptionsToType;
-
-    useEffect(() => {
-      if(allDescriptionsTyped) {
-        onCompleteRef.current?.();
-      }
-    }, [allDescriptionsTyped]);
-
     const handleTypingComplete = useCallback((index: number) => {
-      if (!typedDescriptions[index]) {
+      if (!typedRef.current.has(index)) {
+        typedRef.current.add(index);
         completedCountRef.current += 1;
-        setTypedDescriptions(prev => ({...prev, [index]: true}));
+
+        if (completedCountRef.current === descriptionsToType) {
+          onCompleteRef.current?.();
+        }
       }
-    }, [typedDescriptions]);
+    }, [descriptionsToType]);
 
   return (
     <div>
