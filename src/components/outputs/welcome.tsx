@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { TypingEffect } from '@/components/typing-effect';
 
 interface WelcomeOutputProps {
   onComplete?: () => void;
@@ -15,9 +15,9 @@ export function WelcomeOutput({ onComplete }: WelcomeOutputProps) {
                                                               
 Welcome, user. Type 'help' to see available commands.`;
 
-  useEffect(() => {
-    onComplete?.();
-  }, [onComplete]);
+  const typingSpeed = 500 / welcomeText.length;
 
-  return <div style={{ whiteSpace: 'pre-wrap' }}>{welcomeText}</div>;
+  return (
+    <TypingEffect text={welcomeText} speed={typingSpeed} onComplete={onComplete} />
+  );
 }
