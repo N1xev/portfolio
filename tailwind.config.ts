@@ -13,6 +13,7 @@ export default {
         body: ['Geist Mono', 'monospace'],
         headline: ['Geist Mono', 'monospace'],
         mono: ['Geist Mono', 'monospace'],
+        code: ['Fira Code Nerd Font', 'Fira Code', 'monospace'],
       },
       colors: {
         background: 'hsl(var(--background))',
