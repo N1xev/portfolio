@@ -22,11 +22,18 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
         <link
-          href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap"
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/pretendard/1.3.9/static/pretendard.min.css"
+          integrity="sha512-N2078+Ie9k/Y52PA28n02C/I32paP8a27m03SnBgr3Jot2z/Jj3lP/i+xY2+B296x06kfhx2v24wL/218A2/nQ=="
+          crossOrigin="anonymous"
+          referrerPolicy="no-referrer"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@200..900&display=swap"
           rel="stylesheet"
         />
       </head>
-      <body className="font-code antialiased">
+      <body className="font-mono antialiased">
         {children}
         <Toaster />
       </body>

@@ -45,7 +45,7 @@ export function ProjectsOutput({ onComplete }: ProjectsOutputProps) {
             <AccordionContent className="text-muted-foreground">
               <TypingEffect
                   text={p.description}
-                  speed={2}
+                  speed={1}
                   onComplete={() => handleTypingComplete(i)}
               />
               <div className="mt-4">

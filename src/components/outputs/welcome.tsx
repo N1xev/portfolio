@@ -1,23 +1,17 @@
 import { useEffect } from 'react';
+import { TypingEffect } from '@/components/typing-effect';
+import { welcomeText } from '@/lib/information';
 
 interface WelcomeOutputProps {
   onComplete?: () => void;
 }
 
 export function WelcomeOutput({ onComplete }: WelcomeOutputProps) {
-  const welcomeText = `
-  ███████╗ █████╗ ███╗   ███╗ ██████╗ ██╗   ██╗██╗     ██╗   ██╗
-  ██╔════╝██╔══██╗████╗ ████║██╔═══██╗██║   ██║██║     ╚██╗ ██╔╝
-  ███████╗███████║██╔████╔██║██║   ██║██║   ██║██║      ╚████╔╝ 
-  ╚════██║██╔══██║██║╚██╔╝██║██║   ██║██║   ██║██║       ╚██╔╝  
-  ███████║██║  ██║██║ ╚═╝ ██║╚██████╔╝╚██████╔╝███████╗   ██║   
-  ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝ ╚═════╝  ╚═════╝ ╚══════╝   ╚═╝   
-                                                              
-Welcome, user. Type 'help' to see available commands.`;
+  const typingSpeed = welcomeText.length / 0.5;
 
-  useEffect(() => {
-    onComplete?.();
-  }, [onComplete]);
-
-  return <div style={{ whiteSpace: 'pre-wrap' }}>{welcomeText}</div>;
+  return (
+    <div style={{ fontFamily: "'Geist Mono Nerd Font', 'Geist Mono', monospace" }}>
+        <TypingEffect text={welcomeText} speed={1000/typingSpeed} onComplete={onComplete} />
+    </div>
+  )
 }

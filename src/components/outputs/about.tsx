@@ -14,7 +14,7 @@ export function AboutOutput({ onComplete }: AboutOutputProps) {
         <h2 className="text-lg font-bold">About Me</h2>
       </div>
       <div className="mt-2 text-muted-foreground">
-        <TypingEffect text={aboutText} speed={2} onComplete={onComplete} />
+        <TypingEffect text={aboutText} speed={1} onComplete={onComplete} />
       </div>
     </div>
   );
