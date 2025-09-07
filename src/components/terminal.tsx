@@ -44,7 +44,7 @@ export function Terminal() {
           output = <SkillsOutput />;
           break;
         case 'projects':
-          output = <ProjectsOutput />;
+          output = <ProjectsOutput onComplete={onCommandComplete} />;
           break;
         case 'clear':
           setHistory([]);
@@ -54,7 +54,7 @@ export function Terminal() {
           output = <NotFoundOutput command={command} />;
       }
       
-      setHistory([...newHistory, <div className="mt-2" key={history.length + 1}>{output}</div>]);
+      setHistory([...newHistory, <div className="mt-4" key={history.length + 1}>{output}</div>]);
 
       if (['skills', 'help', 'clear', 'projects'].includes(command.toLowerCase().trim()) || command.toLowerCase().startsWith('not-found')) {
          onCommandComplete();
@@ -87,7 +87,7 @@ export function Terminal() {
       const navHistory = commandHistory.slice(-5);
       const newSuggestions = await getCommandSuggestions(inputValue, navHistory);
       setSuggestions(newSuggestions);
-    }, 100);
+    }, 150);
     return () => clearTimeout(handler);
   }, [inputValue, commandHistory, isProcessing]);
 
@@ -133,7 +133,7 @@ export function Terminal() {
 
   return (
     <div
-      className="w-full h-[85vh] max-w-5xl bg-card border border-border rounded-xl p-4 overflow-hidden flex flex-col font-code shadow-2xl shadow-primary/10"
+      className="w-full h-[85vh] max-w-5xl bg-card border border-border rounded-xl p-4 overflow-hidden flex flex-col font-mono shadow-2xl shadow-primary/10"
       onClick={focusInput}
     >
       <div ref={containerRef} className="flex-grow overflow-y-auto pr-2">
