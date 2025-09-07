@@ -1,19 +1,29 @@
-import { useEffect } from 'react';
-import { welcomeText } from '@/lib/information';
+import { useEffect, useState } from 'react';
+import { welcomeText, welcomeTextMobile } from '@/lib/information';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 interface WelcomeOutputProps {
   onComplete?: () => void;
 }
 
 export function WelcomeOutput({ onComplete }: WelcomeOutputProps) {
+  const isMobile = useIsMobile();
+  const [text, setText] = useState(isMobile ? welcomeTextMobile : welcomeText);
+
+  useEffect(() => {
+    setText(isMobile ? welcomeTextMobile : welcomeText);
+  }, [isMobile]);
 
   useEffect(() => {
     onComplete?.();
-  }, [onComplete])
+  }, [onComplete]);
 
   return (
-    <div style={{ fontFamily: "'Fira Code Nerd Font', 'Fira Code', monospace", whiteSpace: 'pre' }}>
-        {welcomeText}
+    <div
+      className="font-code leading-[18px]"
+      style={{ whiteSpace: 'pre-wrap' }}
+    >
+      {text}
     </div>
-  )
+  );
 }
