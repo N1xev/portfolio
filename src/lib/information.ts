@@ -21,6 +21,18 @@ export const projects = [
       'Developed a custom 2D physics engine module in C++. Implemented collision detection (AABB, Circle), resolution, and rigid body dynamics from scratch to optimize performance for a tile-based game.',
     tech: ['C++', 'Clang', 'CMake', 'SDL2'],
   },
+  {
+    title: 'C++ Game Engine Physics Module',
+    description:
+      'Developed a custom 2D physics engine module in C++. Implemented collision detection (AABB, Circle), resolution, and rigid body dynamics from scratch to optimize performance for a tile-based game.',
+    tech: ['C++', 'Clang', 'CMake', 'SDL2'],
+  },
+  {
+    title: 'C++ Game Engine Physics Module',
+    description:
+      'Developed a custom 2D physics engine module in C++. Implemented collision detection (AABB, Circle), resolution, and rigid body dynamics from scratch to optimize performance for a tile-based game.',
+    tech: ['C++', 'Clang', 'CMake', 'SDL2'],
+  },
 ];
 
 export const skills = {
