@@ -7,31 +7,11 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion';
 import React, { useEffect, useState, useRef, useCallback } from 'react';
+import { projects } from '@/lib/information';
 
 interface ProjectsOutputProps {
     onComplete?: () => void;
 }
-
-const projects = [
-  {
-    title: 'Distributed Key-Value Store',
-    description:
-      'A high-performance, distributed key-value store built in Golang, implementing the Raft consensus algorithm for fault tolerance. Features consistent hashing for data distribution and gRPC for inter-node communication.',
-    tech: ['Golang', 'gRPC', 'Protocol Buffers', 'Raft Consensus'],
-  },
-  {
-    title: 'Real-time Collaborative Code Editor',
-    description:
-      'A web-based code editor that allows multiple users to edit the same file in real-time. Built with Next.js on the frontend and a Node.js server using WebSockets for synchronization.',
-    tech: ['Next.js', 'React', 'TypeScript', 'Node.js', 'WebSockets'],
-  },
-  {
-    title: 'C++ Game Engine Physics Module',
-    description:
-      'Developed a custom 2D physics engine module in C++. Implemented collision detection (AABB, Circle), resolution, and rigid body dynamics from scratch to optimize performance for a tile-based game.',
-    tech: ['C++', 'Clang', 'CMake', 'SDL2'],
-  },
-];
 
 export function ProjectsOutput({ onComplete }: ProjectsOutputProps) {
     const [typedDescriptions, setTypedDescriptions] = useState<Record<string, boolean>>({});

@@ -1,27 +1,6 @@
 import { Cpu } from 'lucide-react';
 import { Progress } from '@/components/ui/progress';
-
-const skills = {
-  'Web Development': [
-    { name: 'React / Next.js', level: 95 },
-    { name: 'TypeScript', level: 90 },
-    { name: 'Node.js / Express', level: 85 },
-    { name: 'Tailwind CSS', level: 95 },
-    { name: 'Firebase', level: 80 },
-  ],
-  Golang: [
-    { name: 'Concurrent Programming', level: 90 },
-    { name: 'Microservices & APIs', level: 80 },
-    { name: 'gRPC & Protobuf', level: 85 },
-    { name: 'Standard Library', level: 95 },
-  ],
-  'C & C++ (Clang)': [
-    { name: 'Systems Programming', level: 75 },
-    { name: 'Performance Optimization', level: 80 },
-    { name: 'Memory Management', level: 85 },
-    { name: 'Build Systems (CMake)', level: 70 },
-  ],
-};
+import { skills } from '@/lib/information';
 
 export function SkillsOutput() {
   return (
