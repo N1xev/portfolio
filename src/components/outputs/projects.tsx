@@ -6,7 +6,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
-import React, { useEffect, useRef, useCallback } from 'react';
+import React, { useEffect } from 'react';
 import { projects } from '@/lib/information';
 
 interface ProjectsOutputProps {
@@ -14,23 +14,9 @@ interface ProjectsOutputProps {
 }
 
 export function ProjectsOutput({ onComplete }: ProjectsOutputProps) {
-    const onCompleteRef = useRef(onComplete);
-    onCompleteRef.current = onComplete;
-
-    const completedCountRef = useRef(0);
-    const typedRef = useRef<Set<number>>(new Set());
-    const descriptionsToType = projects.length;
-    
-    const handleTypingComplete = useCallback((index: number) => {
-      if (!typedRef.current.has(index)) {
-        typedRef.current.add(index);
-        completedCountRef.current += 1;
-
-        if (completedCountRef.current === descriptionsToType) {
-          onCompleteRef.current?.();
-        }
-      }
-    }, [descriptionsToType]);
+    useEffect(() => {
+        onComplete?.();
+    }, [onComplete]);
 
   return (
     <div>
@@ -45,8 +31,7 @@ export function ProjectsOutput({ onComplete }: ProjectsOutputProps) {
             <AccordionContent className="text-muted-foreground">
               <TypingEffect
                   text={p.description}
-                  speed={1}
-                  onComplete={() => handleTypingComplete(i)}
+                  speed={0.1}
               />
               <div className="mt-4">
                 <span className="font-semibold text-primary/80">Tech:</span> {p.tech.join(', ')}
@@ -55,7 +40,7 @@ export function ProjectsOutput({ onComplete }: ProjectsOutputProps) {
           </AccordionItem>
         ))}
       </Accordion>
-       <p className="text-xs text-muted-foreground mt-2">Expand items to view details. The terminal will be ready for the next command once all project descriptions have been typed out.</p>
+       <p className="text-xs text-muted-foreground mt-2">Expand items to view details.</p>
     </div>
   );
 }

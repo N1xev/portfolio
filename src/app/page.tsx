@@ -11,7 +11,7 @@ export default function Home() {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if ((e.ctrlKey || e.metaKey) && e.key === 'a') {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
         e.preventDefault();
         setIsStarted(true);
       }
@@ -70,9 +70,9 @@ export default function Home() {
                  <div className="p-6 flex items-center justify-center">
                     <p className="text-sm text-muted-foreground">
                         Or press <kbd className="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
-                            <span className="text-xs">⌘</span>A
+                            <span className="text-xs">⌘</span>Enter
                         </kbd> / <kbd className="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
-                            <span className="text-xs">Ctrl</span>A
+                            <span className="text-xs">Ctrl</span>Enter
                         </kbd>
                     </p>
                  </div>
