@@ -14,5 +14,5 @@ export function WelcomeOutput({ onComplete }: WelcomeOutputProps) {
   ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝ ╚═════╝  ╚═════╝ ╚══════╝   ╚═╝   
                                                               
 Welcome, user. Type 'help' to see available commands.`;
-  return <TypingEffect text={welcomeText} speed={0.5} onComplete={onComplete} />;
+  return <TypingEffect text={welcomeText} speed={0.1} onComplete={onComplete} />;
 }

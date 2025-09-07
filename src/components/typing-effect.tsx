@@ -11,7 +11,7 @@ interface TypingEffectProps {
 
 export function TypingEffect({
   text,
-  speed = 10,
+  speed = 15,
   className,
   onComplete,
 }: TypingEffectProps) {
