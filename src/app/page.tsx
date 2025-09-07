@@ -46,7 +46,7 @@ export default function Home() {
 
 
   return (
-    <main className="flex h-screen flex-col items-center justify-center p-2 sm:p-4">
+    <main className="flex h-screen flex-col items-center justify-center p-4">
       <AnimatePresence mode="wait">
         {!isStarted ? (
           <motion.div
