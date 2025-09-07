@@ -6,6 +6,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
+import React, { useEffect } from 'react';
 
 interface ProjectsOutputProps {
     onComplete?: () => void;
@@ -33,13 +34,8 @@ const projects = [
 ];
 
 export function ProjectsOutput({ onComplete }: ProjectsOutputProps) {
-    const [activeItem, setActiveItem] = React.useState<string | undefined>();
     const [typedDescriptions, setTypedDescriptions] = React.useState<Record<string, boolean>>({});
 
-    const handleAccordionChange = (value: string) => {
-        setActiveItem(value);
-    }
-    
     const allDescriptionsTyped = projects.every((_, i) => typedDescriptions[`item-${i}`]);
 
     useEffect(() => {
@@ -55,20 +51,19 @@ export function ProjectsOutput({ onComplete }: ProjectsOutputProps) {
         <FolderGit2 className="h-5 w-5 text-primary" />
         <h2 className="text-lg font-bold">Projects</h2>
       </div>
-      <Accordion type="single" collapsible className="w-full mt-2" onValueChange={handleAccordionChange} onBlur={onComplete}>
+      <Accordion type="single" collapsible className="w-full mt-2">
         {projects.map((p, i) => (
           <AccordionItem value={`item-${i}`} key={i}>
             <AccordionTrigger>{p.title}</AccordionTrigger>
             <AccordionContent className="text-muted-foreground">
-              {activeItem === `item-${i}` && (
-                <TypingEffect 
-                    text={p.description} 
-                    speed={5} 
+              {typedDescriptions[`item-${i}`] ? (
+                p.description
+              ) : (
+                <TypingEffect
+                    text={p.description}
+                    speed={5}
                     onComplete={() => {
                         setTypedDescriptions(prev => ({...prev, [`item-${i}`]: true}));
-                        if (i === projects.length - 1) {
-                            onComplete?.();
-                        }
                     }}
                 />
               )}
@@ -83,6 +78,3 @@ export function ProjectsOutput({ onComplete }: ProjectsOutputProps) {
     </div>
   );
 }
-
-// Dummy React import to satisfy linter
-import React, { useEffect } from 'react';
