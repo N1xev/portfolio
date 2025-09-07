@@ -8,6 +8,7 @@ import { HelpOutput } from './outputs/help';
 import { ProjectsOutput } from './outputs/projects';
 import { SkillsOutput } from './outputs/skills';
 import { NotFoundOutput } from './outputs/not-found';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export function Terminal() {
   const [history, setHistory] = useState<React.ReactNode[]>([]);
@@ -22,7 +23,7 @@ export function Terminal() {
 
   const onCommandComplete = useCallback(() => {
     setIsProcessing(false);
-    inputRef.current?.focus();
+    setTimeout(() => inputRef.current?.focus(), 0);
   }, []);
 
   const processCommand = useCallback(
@@ -54,9 +55,10 @@ export function Terminal() {
       
       setHistory([...newHistory, <div key={history.length + 1}>{output}</div>]);
 
-      // For instant commands
-      if (['skills', 'help', 'clear'].includes(command.toLowerCase().trim()) || command.startsWith('not-found')) {
+      if (['skills', 'help', 'clear'].includes(command.toLowerCase().trim()) || command.toLowerCase().startsWith('not-found')) {
          onCommandComplete();
+      } else if (command.toLowerCase().trim() !== 'projects' && command.toLowerCase().trim() !== 'about'){
+        onCommandComplete();
       }
     },
     [history, onCommandComplete]
@@ -129,19 +131,36 @@ export function Terminal() {
   };
 
   return (
-    <div
-      className="w-full h-[60vh] max-w-4xl bg-black border-2 border-accent rounded-lg p-4 overflow-hidden flex flex-col font-code shadow-2xl shadow-primary/20"
+    <motion.div
+      initial={{ opacity: 0, scale: 0.95 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.5, ease: 'easeOut' }}
+      className="w-full h-[70vh] max-w-5xl bg-card border border-border rounded-xl p-4 overflow-hidden flex flex-col font-code shadow-2xl shadow-primary/10"
       onClick={focusInput}
     >
       <div ref={containerRef} className="flex-grow overflow-y-auto pr-2">
-        {history.map((item, index) => (
-          <div key={index} className="mb-2 last:mb-0">
-            {item}
-          </div>
-        ))}
+        <AnimatePresence initial={false}>
+          {history.map((item, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="mb-2 last:mb-0"
+            >
+              {item}
+            </motion.div>
+          ))}
+        </AnimatePresence>
       </div>
       {!isProcessing && (
-        <div className="mt-2">
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3 }}
+          className="mt-2"
+        >
             {suggestions.length > 0 && (
                 <div className="flex items-center gap-2 text-muted-foreground text-sm mb-1">
                     <span>Suggestions:</span>
@@ -164,8 +183,8 @@ export function Terminal() {
               disabled={isProcessing}
             />
           </div>
-        </div>
+        </motion.div>
       )}
-    </div>
+    </motion.div>
   );
 }

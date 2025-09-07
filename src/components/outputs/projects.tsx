@@ -6,7 +6,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 
 interface ProjectsOutputProps {
     onComplete?: () => void;
@@ -34,16 +34,18 @@ const projects = [
 ];
 
 export function ProjectsOutput({ onComplete }: ProjectsOutputProps) {
-    const [typedDescriptions, setTypedDescriptions] = React.useState<Record<string, boolean>>({});
+    const [typedDescriptions, setTypedDescriptions] = useState<Record<string, boolean>>({});
+    const onCompleteRef = useRef(onComplete);
+    onCompleteRef.current = onComplete;
 
-    const allDescriptionsTyped = projects.every((_, i) => typedDescriptions[`item-${i}`]);
-
+    const descriptionsToType = projects.length;
+    
     useEffect(() => {
-        if (allDescriptionsTyped) {
-            onComplete?.();
+        const typedCount = Object.values(typedDescriptions).filter(Boolean).length;
+        if (typedCount === descriptionsToType) {
+            onCompleteRef.current?.();
         }
-    }, [allDescriptionsTyped, onComplete]);
-
+    }, [typedDescriptions, descriptionsToType]);
 
   return (
     <div>
@@ -56,17 +58,13 @@ export function ProjectsOutput({ onComplete }: ProjectsOutputProps) {
           <AccordionItem value={`item-${i}`} key={i}>
             <AccordionTrigger>{p.title}</AccordionTrigger>
             <AccordionContent className="text-muted-foreground">
-              {typedDescriptions[`item-${i}`] ? (
-                p.description
-              ) : (
-                <TypingEffect
-                    text={p.description}
-                    speed={5}
-                    onComplete={() => {
-                        setTypedDescriptions(prev => ({...prev, [`item-${i}`]: true}));
-                    }}
-                />
-              )}
+              <TypingEffect
+                  text={p.description}
+                  speed={5}
+                  onComplete={() => {
+                      setTypedDescriptions(prev => ({...prev, [`item-${i}`]: true}));
+                  }}
+              />
               <div className="mt-4">
                 <span className="font-semibold text-primary/80">Tech:</span> {p.tech.join(', ')}
               </div>
