@@ -44,7 +44,7 @@ export function Terminal() {
           output = <SkillsOutput />;
           break;
         case 'projects':
-          output = <ProjectsOutput onComplete={onCommandComplete} />;
+          output = <ProjectsOutput />;
           break;
         case 'clear':
           setHistory([]);
@@ -54,11 +54,11 @@ export function Terminal() {
           output = <NotFoundOutput command={command} />;
       }
       
-      setHistory([...newHistory, <div key={history.length + 1}>{output}</div>]);
+      setHistory([...newHistory, <div className="mt-2" key={history.length + 1}>{output}</div>]);
 
-      if (['skills', 'help', 'clear'].includes(command.toLowerCase().trim()) || command.toLowerCase().startsWith('not-found')) {
+      if (['skills', 'help', 'clear', 'projects'].includes(command.toLowerCase().trim()) || command.toLowerCase().startsWith('not-found')) {
          onCommandComplete();
-      } else if (command.toLowerCase().trim() !== 'projects' && command.toLowerCase().trim() !== 'about'){
+      } else if (command.toLowerCase().trim() !== 'about'){
         onCommandComplete();
       }
     },
@@ -87,7 +87,7 @@ export function Terminal() {
       const navHistory = commandHistory.slice(-5);
       const newSuggestions = await getCommandSuggestions(inputValue, navHistory);
       setSuggestions(newSuggestions);
-    }, 150);
+    }, 100);
     return () => clearTimeout(handler);
   }, [inputValue, commandHistory, isProcessing]);
 
