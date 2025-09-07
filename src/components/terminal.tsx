@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
@@ -131,10 +132,7 @@ export function Terminal() {
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.95 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.5, ease: 'easeOut' }}
+    <div
       className="w-full h-[70vh] max-w-5xl bg-card border border-border rounded-xl p-4 overflow-hidden flex flex-col font-code shadow-2xl shadow-primary/10"
       onClick={focusInput}
     >
@@ -185,6 +183,6 @@ export function Terminal() {
           </div>
         </motion.div>
       )}
-    </motion.div>
+    </div>
   );
 }
