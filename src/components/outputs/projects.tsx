@@ -6,7 +6,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 
 interface ProjectsOutputProps {
     onComplete?: () => void;
@@ -47,6 +47,10 @@ export function ProjectsOutput({ onComplete }: ProjectsOutputProps) {
         }
     }, [typedDescriptions, descriptionsToType]);
 
+    const handleTypingComplete = useCallback((index: number) => {
+        setTypedDescriptions(prev => ({...prev, [`item-${index}`]: true}));
+    }, []);
+
   return (
     <div>
       <div className="flex items-center gap-2">
@@ -61,9 +65,7 @@ export function ProjectsOutput({ onComplete }: ProjectsOutputProps) {
               <TypingEffect
                   text={p.description}
                   speed={5}
-                  onComplete={() => {
-                      setTypedDescriptions(prev => ({...prev, [`item-${i}`]: true}));
-                  }}
+                  onComplete={() => handleTypingComplete(i)}
               />
               <div className="mt-4">
                 <span className="font-semibold text-primary/80">Tech:</span> {p.tech.join(', ')}
