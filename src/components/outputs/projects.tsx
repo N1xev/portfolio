@@ -19,17 +19,23 @@ export function ProjectsOutput({ onComplete }: ProjectsOutputProps) {
     onCompleteRef.current = onComplete;
 
     const descriptionsToType = projects.length;
+    const completedCountRef = useRef(0);
     
     useEffect(() => {
-        const typedCount = Object.values(typedDescriptions).filter(Boolean).length;
-        if (typedCount === descriptionsToType) {
+        if (completedCountRef.current === descriptionsToType) {
             onCompleteRef.current?.();
         }
-    }, [typedDescriptions, descriptionsToType]);
+    }, [descriptionsToType]);
 
     const handleTypingComplete = useCallback((index: number) => {
-        setTypedDescriptions(prev => ({...prev, [`item-${index}`]: true}));
-    }, []);
+        if (!typedDescriptions[index]) {
+            completedCountRef.current += 1;
+            setTypedDescriptions(prev => ({...prev, [index]: true}));
+            if (completedCountRef.current === descriptionsToType) {
+                onCompleteRef.current?.();
+            }
+        }
+    }, [descriptionsToType, typedDescriptions]);
 
   return (
     <div>

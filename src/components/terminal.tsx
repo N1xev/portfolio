@@ -152,37 +152,35 @@ export function Terminal() {
           ))}
         </AnimatePresence>
       </div>
-      {!isProcessing && (
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
-          className="mt-2"
-        >
-            {suggestions.length > 0 && (
-                <div className="flex items-center gap-2 text-muted-foreground text-sm mb-1">
-                    <span>Suggestions:</span>
-                    {suggestions.map((s, i) => (
-                        <span key={i} className="bg-accent px-2 py-0.5 rounded-sm">{s}</span>
-                    ))}
-                     <span className="text-xs">(Press Tab to autocomplete)</span>
-                </div>
-            )}
-          <div className="flex items-center">
-            <span className="text-primary">&gt;</span>
-            <input
-              ref={inputRef}
-              type="text"
-              value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
-              onKeyDown={handleKeyDown}
-              className="bg-transparent text-foreground focus:outline-none flex-1 pl-2"
-              autoFocus
-              disabled={isProcessing}
-            />
-          </div>
-        </motion.div>
-      )}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: isProcessing ? 0.5 : 1, y: 0 }}
+        transition={{ duration: 0.3 }}
+        className="mt-2"
+      >
+          {suggestions.length > 0 && !isProcessing && (
+              <div className="flex items-center gap-2 text-muted-foreground text-sm mb-1">
+                  <span>Suggestions:</span>
+                  {suggestions.map((s, i) => (
+                      <span key={i} className="bg-accent px-2 py-0.5 rounded-sm">{s}</span>
+                  ))}
+                   <span className="text-xs">(Press Tab to autocomplete)</span>
+              </div>
+          )}
+        <div className="flex items-center">
+          <span className="text-primary">&gt;</span>
+          <input
+            ref={inputRef}
+            type="text"
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            onKeyDown={handleKeyDown}
+            className="bg-transparent text-foreground focus:outline-none flex-1 pl-2"
+            autoFocus
+            disabled={isProcessing}
+          />
+        </div>
+      </motion.div>
     </div>
   );
 }
