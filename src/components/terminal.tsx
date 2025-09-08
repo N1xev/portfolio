@@ -66,13 +66,10 @@ export function Terminal() {
       const newOutput = <div className="mt-2" key={history.length + 1}>{output}</div>
       setHistory([...newHistory, newOutput]);
 
-      const isImmediate = ['skills', 'help', 'sitch', 'clear', 'projects'].includes(command.toLowerCase().trim()) || !allCommands.includes(command.toLowerCase().trim());
-
-
+      const isImmediate = !['about'].includes(command.toLowerCase().trim());
+      
       if (isImmediate) {
          onCommandComplete();
-      } else if (command.toLowerCase().trim() !== 'about'){
-        onCommandComplete();
       }
     },
     [history, onCommandComplete]
@@ -89,14 +86,11 @@ export function Terminal() {
     }
   }, [history]);
 
-  // Handle local command and history suggestions
   useEffect(() => {
     if (inputValue) {
-      // History suggestion
       const historyMatch = [...commandHistory].reverse().find(cmd => cmd.startsWith(inputValue) && cmd !== inputValue);
       setHistorySuggestion(historyMatch || '');
 
-      // Command suggestions for tab completion
       const commandMatches = allCommands.filter(cmd => cmd.startsWith(inputValue));
       setSuggestions(commandMatches);
       setSuggestionIndex(0);
@@ -109,7 +103,7 @@ export function Terminal() {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setInputValue(value);
-    originalInputValueRef.current = value; // Always update original input on change
+    originalInputValueRef.current = value;
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -125,6 +119,7 @@ export function Terminal() {
         setSuggestions([]);
         setHistoryPointer(commandHistory.length);
         processCommand(command);
+        originalInputValueRef.current = ''; 
       }
     } else if (e.key === 'Tab') {
         e.preventDefault();
@@ -137,7 +132,9 @@ export function Terminal() {
                 nextIndex = (suggestionIndex + 1) % suggestions.length;
             }
             setSuggestionIndex(nextIndex);
-            setInputValue(suggestions[nextIndex]);
+            const newInputValue = suggestions[nextIndex];
+            setInputValue(newInputValue);
+            originalInputValueRef.current = newInputValue;
         }
     } else if (e.key === 'ArrowUp') {
         e.preventDefault();
@@ -159,7 +156,7 @@ export function Terminal() {
             setInputValue(originalInputValueRef.current);
         }
         setHistoryPointer(newPointer);
-    } else if (e.key === 'ArrowRight' || (e.ctrlKey && e.key === 'f')) { // Ctrl+f for accepting suggestion
+    } else if (e.key === 'ArrowRight' || (e.ctrlKey && e.key === 'f')) {
         if (historySuggestion && inputRef.current?.selectionStart === inputValue.length) {
             e.preventDefault();
             setInputValue(historySuggestion);
@@ -206,25 +203,27 @@ export function Terminal() {
         {isProcessing ? null : (
             <div className="relative flex items-center">
               <span className="text-primary">&gt;</span>
-              <input
-                ref={inputRef}
-                type="text"
-                value={inputValue}
-                onChange={handleInputChange}
-                onKeyDown={handleKeyDown}
-                className="bg-transparent text-foreground focus:outline-none flex-1 pl-2 z-10"
-                autoFocus
-                disabled={isProcessing}
-                autoComplete="off"
-                autoCapitalize="off"
-                autoCorrect="off"
-              />
-              {historySuggestion && inputValue && (
-                <div className="absolute left-0 top-0 pl-[26px] pt-px text-muted-foreground/50 pointer-events-none z-0">
-                  <span className="invisible">{inputValue}</span>
-                  <span>{historySuggestion.substring(inputValue.length)}</span>
-                </div>
-              )}
+              <div className="relative flex-1">
+                <input
+                  ref={inputRef}
+                  type="text"
+                  value={inputValue}
+                  onChange={handleInputChange}
+                  onKeyDown={handleKeyDown}
+                  className="bg-transparent text-foreground focus:outline-none w-full pl-2 z-10 relative"
+                  autoFocus
+                  disabled={isProcessing}
+                  autoComplete="off"
+                  autoCapitalize="off"
+                  autoCorrect="off"
+                />
+                {historySuggestion && inputValue && (
+                  <div className="absolute inset-y-0 left-0 pl-2 text-muted-foreground/50 pointer-events-none z-0">
+                    <span className="invisible">{inputValue}</span>
+                    <span>{historySuggestion.substring(inputValue.length)}</span>
+                  </div>
+                )}
+              </div>
             </div>
         )}
       </motion.div>
