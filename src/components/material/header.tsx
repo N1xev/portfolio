@@ -8,9 +8,14 @@ export function Header() {
 
     useEffect(() => {
         const root = window.document.documentElement;
-        const initialClass = root.classList.contains('dark') ? 'material-dark' : 'material-light';
-        root.classList.add(initialClass);
-        setIsDark(root.classList.contains('dark'));
+        // Set default theme based on system preference or saved theme
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const defaultIsDark = root.classList.contains('dark') || prefersDark;
+
+        root.classList.toggle('dark', defaultIsDark);
+        root.classList.toggle('material-dark', defaultIsDark);
+        root.classList.toggle('material-light', !defaultIsDark);
+        setIsDark(defaultIsDark);
 
         return () => {
             root.classList.remove('material-dark', 'material-light');
@@ -34,10 +39,11 @@ export function Header() {
                     </a>
                 </div>
                 <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
-                    <Button variant="ghost" size="icon" onClick={toggleTheme}>
-                        {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-                        <span className="sr-only">Toggle theme</span>
-                    </Button>
+                    <nav className="flex items-center">
+                        <Button variant="ghost" size="icon" onClick={toggleTheme} aria-label="Toggle theme">
+                            {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+                        </Button>
+                    </nav>
                 </div>
             </div>
         </header>

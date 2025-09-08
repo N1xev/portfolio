@@ -16,14 +16,12 @@ export function PortfolioPage() {
             transition={{ duration: 0.5, ease: 'easeOut' }}
             className="w-full h-full"
         >
-            <div className="h-full overflow-y-auto bg-background">
+            <div className="h-full overflow-y-auto bg-background text-foreground">
                 <Header />
-                <main className="container mx-auto px-4 md:px-6 py-8 md:py-12">
-                   <div className="space-y-12">
-                        <AboutSection />
-                        <SkillsSection />
-                        <ProjectsSection />
-                    </div>
+                <main>
+                    <AboutSection />
+                    <SkillsSection />
+                    <ProjectsSection />
                 </main>
             </div>
         </motion.div>
