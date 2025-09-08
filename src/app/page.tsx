@@ -85,7 +85,7 @@ export default function Home() {
   )
 
   return (
-    <main className="flex flex-col items-center justify-center p-4 md:p-6 lg:p-8 fixed inset-0">
+    <main className="flex flex-col items-center justify-center fixed inset-0">
       <AnimatePresence mode="wait">
         {!isStarted ? (
           <StartScreen />
@@ -95,7 +95,7 @@ export default function Home() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, ease: 'easeOut' }}
-            className="w-full h-full flex items-center justify-center"
+            className="w-full h-full flex items-center justify-center p-4 md:p-6 lg:p-8"
           >
             <TerminalView />
           </motion.div>
