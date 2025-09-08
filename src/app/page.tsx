@@ -70,7 +70,7 @@ export default function Home() {
         <motion.div variants={itemVariants} className="rounded-lg border bg-card text-card-foreground shadow-sm w-full max-w-sm">
             <div className="p-6 flex flex-col items-center gap-4">
                 <h3 className="text-xl font-semibold leading-none tracking-tight">Choose your experience</h3>
-                <div className="flex flex-col sm:flex-row gap-2 w-full">
+                <div className="flex flex-col gap-2 w-full">
                     <Button onClick={() => { setView('terminal'); setIsStarted(true); }} className="w-full" size="lg">
                         <Terminal className="mr-2" /> Terminal Portfolio
                     </Button>
