@@ -88,10 +88,10 @@ export default function Home() {
   )
 
   return (
-    <main className="fixed inset-0 p-4">
+    <main className="fixed inset-0">
       <AnimatePresence mode="wait">
         {!isStarted ? (
-          <div className="flex items-center justify-center h-full">
+          <div className="flex items-center justify-center h-full p-4">
             <StartScreen />
           </div>
         ) : view === 'terminal' ? (
@@ -100,7 +100,7 @@ export default function Home() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, ease: 'easeOut' }}
-            className="w-full h-full"
+            className="w-full h-full p-4"
           >
             <TerminalView onSwitch={switchToMaterial} />
           </motion.div>
