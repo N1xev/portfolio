@@ -13,7 +13,9 @@ export default function Home() {
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
         e.preventDefault();
-        setIsStarted(true);
+        if (!isStarted) {
+            setIsStarted(true);
+        }
       }
     };
 
@@ -22,7 +24,7 @@ export default function Home() {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, []);
+  }, [isStarted]);
   
   const containerVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -46,7 +48,7 @@ export default function Home() {
 
 
   return (
-    <main className="flex h-screen flex-col items-center justify-center p-4">
+    <main className="flex flex-col items-center justify-center p-4 md:p-6 lg:p-8 fixed inset-0">
       <AnimatePresence mode="wait">
         {!isStarted ? (
           <motion.div
