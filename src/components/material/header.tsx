@@ -1,5 +1,5 @@
 
-import { Sun, Moon, Terminal } from 'lucide-react';
+import { Terminal } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useEffect, useState } from 'react';
 
@@ -8,31 +8,19 @@ interface HeaderProps {
 }
 
 export function Header({ onSwitch }: HeaderProps) {
-    const [isDark, setIsDark] = useState(false);
-
     useEffect(() => {
         const root = window.document.documentElement;
-        // Set default theme based on system preference or saved theme
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const defaultIsDark = root.classList.contains('dark') || prefersDark;
-
-        root.classList.toggle('dark', defaultIsDark);
-        root.classList.toggle('material-dark', defaultIsDark);
-        root.classList.toggle('material-light', !defaultIsDark);
-        setIsDark(defaultIsDark);
+        if (!root.classList.contains('material-dark') && !root.classList.contains('material-light')) {
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            root.classList.toggle('material-dark', prefersDark);
+            root.classList.toggle('material-light', !prefersDark);
+        }
 
         return () => {
             root.classList.remove('material-dark', 'material-light');
         }
     }, [])
 
-    const toggleTheme = () => {
-        const root = window.document.documentElement;
-        root.classList.toggle('dark');
-        root.classList.toggle('material-dark');
-        root.classList.toggle('material-light');
-        setIsDark(!isDark);
-    };
 
     return (
         <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -46,9 +34,6 @@ export function Header({ onSwitch }: HeaderProps) {
                     <nav className="flex items-center">
                         <Button variant="ghost" size="icon" onClick={onSwitch} aria-label="Switch to Terminal">
                             <Terminal className="h-5 w-5" />
-                        </Button>
-                        <Button variant="ghost" size="icon" onClick={toggleTheme} aria-label="Toggle theme">
-                            {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
                         </Button>
                     </nav>
                 </div>
