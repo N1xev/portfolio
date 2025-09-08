@@ -17,7 +17,7 @@ export function ProjectsSection() {
                 </div>
                 <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                     {projects.map((project, index) => (
-                        <Card key={index} className="flex flex-col bg-background">
+                        <Card key={index} className="flex flex-col bg-card">
                             <CardHeader>
                                 <CardTitle>{project.title}</CardTitle>
                             </CardHeader>
