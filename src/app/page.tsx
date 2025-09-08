@@ -1,12 +1,12 @@
 
 'use client';
 
-import { Terminal } from '@/components/terminal';
+import { Terminal as TerminalView } from '@/components/terminal';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { PortfolioPage } from '@/components/material/portfolio-page';
-import { LayoutTerminal, Notebook } from 'lucide-react';
+import { Terminal, Notebook } from 'lucide-react';
 
 export default function Home() {
   const [isStarted, setIsStarted] = useState(false);
@@ -62,7 +62,7 @@ export default function Home() {
                 <h3 className="text-xl font-semibold leading-none tracking-tight">Choose your experience</h3>
                 <div className="flex gap-2 w-full">
                     <Button onClick={() => { setTheme('terminal'); setIsStarted(true); }} className="w-full" size="lg">
-                        <LayoutTerminal className="mr-2" /> Terminal
+                        <Terminal className="mr-2" /> Terminal
                     </Button>
                     <Button onClick={() => { setTheme('material'); setIsStarted(true); }} className="w-full" size="lg" variant="secondary">
                         <Notebook className="mr-2" /> Portfolio
@@ -97,7 +97,7 @@ export default function Home() {
             transition={{ duration: 0.5, ease: 'easeOut' }}
             className="w-full h-full flex items-center justify-center"
           >
-            <Terminal />
+            <TerminalView />
           </motion.div>
         ) : (
           <PortfolioPage />
