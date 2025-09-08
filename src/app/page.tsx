@@ -72,10 +72,10 @@ export default function Home() {
                 <h3 className="text-xl font-semibold leading-none tracking-tight">Choose your experience</h3>
                 <div className="flex flex-col sm:flex-row gap-2 w-full">
                     <Button onClick={() => { setView('terminal'); setIsStarted(true); }} className="w-full" size="lg">
-                        <Terminal className="mr-2" /> Terminal
+                        <Terminal className="mr-2" /> Terminal Portfolio
                     </Button>
                     <Button onClick={() => { setView('material'); setIsStarted(true); }} className="w-full" size="lg" variant="secondary">
-                        <Notebook className="mr-2" /> Portfolio
+                        <Notebook className="mr-2" /> Material Portfolio
                     </Button>
                 </div>
             </div>

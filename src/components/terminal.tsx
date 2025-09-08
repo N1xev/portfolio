@@ -71,7 +71,7 @@ export function Terminal({ onSwitch }: TerminalProps) {
           break;
         case 'switch':
             onSwitch?.();
-            output = 'Switching to portfolio view...';
+            output = 'Switching to Materil portfolio view...'
             break;
         case 'theme':
             const flag = args[0];
