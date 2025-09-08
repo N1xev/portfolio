@@ -13,7 +13,7 @@ export function PortfolioPage({ onSwitch }: PortfolioPageProps) {
     return (
         <div className="h-full overflow-y-auto bg-background text-foreground">
             <Header onSwitch={onSwitch} />
-            <main>
+            <main className="flex flex-col items-center">
                 <AboutSection />
                 <SkillsSection />
                 <ProjectsSection />
