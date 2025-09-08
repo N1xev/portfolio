@@ -23,6 +23,7 @@ export function Terminal() {
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [suggestionIndex, setSuggestionIndex] = useState(0);
   const [historySuggestion, setHistorySuggestion] = useState('');
+  const originalInputValueRef = useRef('');
 
   const inputRef = useRef<HTMLInputElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -49,7 +50,7 @@ export function Terminal() {
           output = <SkillsOutput />;
           break;
         case 'projects':
-          output = <ProjectsOutput onComplete={onCommandComplete}/>;
+          output = <ProjectsOutput />;
           break;
         case 'clear':
           setHistory([]);
@@ -65,11 +66,12 @@ export function Terminal() {
       const newOutput = <div className="mt-2" key={history.length + 1}>{output}</div>
       setHistory([...newHistory, newOutput]);
 
-      const isImmediate = ['skills', 'help', 'sitch', 'clear'].includes(command.toLowerCase().trim()) || command.toLowerCase().startsWith('not-found');
+      const isImmediate = ['skills', 'help', 'sitch', 'clear', 'projects'].includes(command.toLowerCase().trim()) || !allCommands.includes(command.toLowerCase().trim());
+
 
       if (isImmediate) {
          onCommandComplete();
-      } else if (command.toLowerCase().trim() !== 'about' && command.toLowerCase().trim() !== 'projects'){
+      } else if (command.toLowerCase().trim() !== 'about'){
         onCommandComplete();
       }
     },
@@ -103,6 +105,12 @@ export function Terminal() {
       setSuggestions([]);
     }
   }, [inputValue, commandHistory]);
+  
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setInputValue(value);
+    originalInputValueRef.current = value; // Always update original input on change
+  };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (isProcessing) return;
@@ -126,7 +134,7 @@ export function Terminal() {
             if (isShift) {
                 nextIndex = suggestionIndex === 0 ? suggestions.length - 1 : suggestionIndex - 1;
             } else {
-                nextIndex = suggestionIndex === suggestions.length - 1 ? 0 : suggestionIndex + 1;
+                nextIndex = (suggestionIndex + 1) % suggestions.length;
             }
             setSuggestionIndex(nextIndex);
             setInputValue(suggestions[nextIndex]);
@@ -135,23 +143,32 @@ export function Terminal() {
         e.preventDefault();
         const newPointer = Math.max(-1, historyPointer - 1);
         if (newPointer >= 0 && newPointer < commandHistory.length) {
-            setInputValue(commandHistory[commandHistory.length - 1 - newPointer]);
+            const cmd = commandHistory[commandHistory.length - 1 - newPointer];
+            setInputValue(cmd);
+            originalInputValueRef.current = cmd;
         }
         setHistoryPointer(newPointer);
     } else if (e.key === 'ArrowDown') {
         e.preventDefault();
         const newPointer = Math.min(commandHistory.length, historyPointer + 1);
         if (newPointer < commandHistory.length) {
-            setInputValue(commandHistory[commandHistory.length - 1 - newPointer]);
+            const cmd = commandHistory[commandHistory.length - 1 - newPointer];
+            setInputValue(cmd);
+            originalInputValueRef.current = cmd;
         } else {
-            setInputValue('');
+            setInputValue(originalInputValueRef.current);
         }
         setHistoryPointer(newPointer);
-    } else if (e.key === 'ArrowRight' || e.key === 'Control' && e.key === 'f') { // Ctrl+f for accepting suggestion
+    } else if (e.key === 'ArrowRight' || (e.ctrlKey && e.key === 'f')) { // Ctrl+f for accepting suggestion
         if (historySuggestion && inputRef.current?.selectionStart === inputValue.length) {
             e.preventDefault();
             setInputValue(historySuggestion);
+            originalInputValueRef.current = historySuggestion;
         }
+    } else {
+      if (e.key.length === 1 && !e.ctrlKey && !e.metaKey) {
+          setHistoryPointer(commandHistory.length);
+      }
     }
   };
 
@@ -193,7 +210,7 @@ export function Terminal() {
                 ref={inputRef}
                 type="text"
                 value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
+                onChange={handleInputChange}
                 onKeyDown={handleKeyDown}
                 className="bg-transparent text-foreground focus:outline-none flex-1 pl-2 z-10"
                 autoFocus
@@ -202,9 +219,10 @@ export function Terminal() {
                 autoCapitalize="off"
                 autoCorrect="off"
               />
-              {historySuggestion && (
+              {historySuggestion && inputValue && (
                 <div className="absolute left-0 top-0 pl-[26px] pt-px text-muted-foreground/50 pointer-events-none z-0">
-                  {historySuggestion}
+                  <span className="invisible">{inputValue}</span>
+                  <span>{historySuggestion.substring(inputValue.length)}</span>
                 </div>
               )}
             </div>
@@ -213,5 +231,3 @@ export function Terminal() {
     </div>
   );
 }
-
-    
