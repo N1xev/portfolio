@@ -67,7 +67,7 @@ export default function Home() {
         exit="exit"
         className="flex flex-col items-center gap-6"
     >
-        <motion.div variants={itemVariants} className="rounded-lg border bg-card text-card-foreground shadow-sm w-80">
+        <motion.div variants={itemVariants} className="rounded-lg border bg-card text-card-foreground shadow-sm w-full max-w-sm">
             <div className="p-6 flex flex-col items-center gap-4">
                 <h3 className="text-xl font-semibold leading-none tracking-tight">Choose your experience</h3>
                 <div className="flex flex-col sm:flex-row gap-2 w-full">
@@ -80,7 +80,7 @@ export default function Home() {
                 </div>
             </div>
         </motion.div>
-        <motion.div variants={itemVariants} className="rounded-lg border bg-card text-card-foreground shadow-sm w-80">
+        <motion.div variants={itemVariants} className="rounded-lg border bg-card text-card-foreground shadow-sm w-full max-w-sm">
                 <div className="p-6 flex items-center justify-center">
                 <p className="text-sm text-muted-foreground">
                     Or press <kbd className="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
