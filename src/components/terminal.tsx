@@ -175,7 +175,7 @@ export function Terminal() {
 
   return (
     <div
-      className="w-full h-[85vh] md:h-[90vh] max-w-5xl bg-card border border-border rounded-xl p-4 overflow-hidden flex flex-col font-mono shadow-2xl shadow-primary/10"
+      className="w-full h-full max-w-5xl bg-card border border-border rounded-xl p-4 overflow-hidden flex flex-col font-mono shadow-2xl shadow-primary/10"
       onClick={focusInput}
     >
       <div ref={containerRef} className="flex-grow overflow-y-auto pr-2">
