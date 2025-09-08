@@ -66,7 +66,7 @@ export const commands = [
     { cmd: 'help', desc: 'Show this help message.' },
   ];
 
-export const welcomeText = `<svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 650 100">
+export const welcomeText = `<svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 650 120">
   <text y="15" class="font-code" fill="currentColor">
     <tspan x="0" dy="1.2em">███████╗ █████╗ ███╗   ███╗ ██████╗ ██╗   ██╗██╗  ██╗   ██╗ ██████╗  ██████╗</tspan>
     <tspan x="0" dy="1.2em">██╔════╝██╔══██╗████╗ ████║██╔═══██╗██║   ██║██║  ╚██╗ ██╔╝██╔════╝ ██╔═══██╗</tspan>
@@ -75,5 +75,5 @@ export const welcomeText = `<svg xmlns="http://www.w3.org/2000/svg" width="100%"
     <tspan x="0" dy="1.2em">███████║██║  ██║██║ ╚═╝ ██║╚██████╔╝╚██████╔╝███████╗██║██╗╚██████╔╝╚██████╔╝</tspan>
     <tspan x="0" dy="1.2em">╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝ ╚═════╝  ╚═════╝ ╚══════╝╚═╝╚═╝ ╚═════╝  ╚═════╝</tspan>
   </text>
-  <text y="90" class="font-mono" fill="currentColor">Welcome, user. Type 'help' to see available commands.</text>
+  <text y="110" class="font-mono" fill="currentColor">Welcome, user. Type 'help' to see available commands.</text>
 </svg>`;
