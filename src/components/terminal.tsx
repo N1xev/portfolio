@@ -14,7 +14,11 @@ import { commands } from '@/lib/information';
 
 const allCommands = commands.map(c => c.cmd);
 
-export function Terminal() {
+interface TerminalProps {
+    onSwitch?: () => void;
+}
+
+export function Terminal({ onSwitch }: TerminalProps) {
   const [history, setHistory] = useState<React.ReactNode[]>([]);
   const [commandHistory, setCommandHistory] = useState<string[]>([]);
   const [historyPointer, setHistoryPointer] = useState(-1);
@@ -33,13 +37,19 @@ export function Terminal() {
     setTimeout(() => inputRef.current?.focus(), 0);
   }, []);
 
+  const setTheme = (theme: 'dark' | 'light') => {
+      const root = window.document.documentElement;
+      root.classList.toggle('dark', theme === 'dark');
+  }
+
   const processCommand = useCallback(
     (command: string) => {
+      const [cmd, ...args] = command.split(' ');
       const newHistory = [...history, <div className="mt-4" key={history.length}><span className="text-primary">&gt;</span> {command}</div>];
       setCommandHistory(prev => (prev.length > 0 && prev[prev.length - 1] === command ? prev : [...prev, command]));
 
       let output: React.ReactNode;
-      switch (command.toLowerCase().trim()) {
+      switch (cmd.toLowerCase().trim()) {
         case 'help':
           output = <HelpOutput />;
           break;
@@ -59,6 +69,22 @@ export function Terminal() {
         case 'sitch':
           output = <SitchOutput />;
           break;
+        case 'switch':
+            onSwitch?.();
+            output = 'Switching to portfolio view...';
+            break;
+        case 'theme':
+            const flag = args[0];
+            if (flag === '--dark') {
+                setTheme('dark');
+                output = 'Theme set to dark.';
+            } else if (flag === '--light') {
+                setTheme('light');
+                output = 'Theme set to light.';
+            } else {
+                output = 'Usage: theme [--dark|--light]';
+            }
+            break;
         default:
           output = <NotFoundOutput command={command} />;
       }
@@ -72,12 +98,13 @@ export function Terminal() {
          onCommandComplete();
       }
     },
-    [history, onCommandComplete]
+    [history, onCommandComplete, onSwitch]
   );
   
   useEffect(() => {
     setHistory([<WelcomeOutput key="welcome" />]);
-     onCommandComplete();
+    setTheme('dark');
+    onCommandComplete();
   }, [onCommandComplete]);
 
   useEffect(() => {
@@ -175,7 +202,7 @@ export function Terminal() {
 
   return (
     <div
-      className="w-full h-full max-w-5xl bg-card border border-border rounded-xl p-4 overflow-hidden flex flex-col font-mono shadow-2xl shadow-primary/10"
+      className="w-full h-full max-w-5xl mx-auto bg-card border border-border rounded-xl p-4 overflow-hidden flex flex-col font-mono shadow-2xl shadow-primary/10"
       onClick={focusInput}
     >
       <div ref={containerRef} className="flex-grow overflow-y-auto pr-2">

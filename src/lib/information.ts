@@ -63,6 +63,8 @@ export const commands = [
     { cmd: 'skills', desc: 'List my technical skills.' },
     { cmd: 'projects', desc: 'Showcase my recent projects.' },
     { cmd: 'sitch', desc: 'Display system information.' },
+    { cmd: 'switch', desc: 'Switch to the portfolio view.'},
+    { cmd: 'theme', desc: 'Switch theme. Usage: theme [--dark|--light]'},
     { cmd: 'clear', desc: 'Clear the terminal screen.' },
     { cmd: 'help', desc: 'Show this help message.' },
   ];

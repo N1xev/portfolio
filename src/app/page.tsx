@@ -10,13 +10,14 @@ import { Terminal, Notebook } from 'lucide-react';
 
 export default function Home() {
   const [isStarted, setIsStarted] = useState(false);
-  const [theme, setTheme] = useState<'terminal' | 'material'>('terminal');
+  const [view, setView] = useState<'terminal' | 'material'>('terminal');
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
         e.preventDefault();
         if (!isStarted) {
+            setView('terminal');
             setIsStarted(true);
         }
       }
@@ -48,6 +49,8 @@ export default function Home() {
     exit: { opacity: 0, scale: 0.9 }
   };
 
+  const switchToMaterial = () => setView('material');
+
   const StartScreen = () => (
     <motion.div
         key="start-screen"
@@ -61,10 +64,10 @@ export default function Home() {
             <div className="p-6 flex flex-col items-center gap-4">
                 <h3 className="text-xl font-semibold leading-none tracking-tight">Choose your experience</h3>
                 <div className="flex flex-col sm:flex-row gap-2 w-full">
-                    <Button onClick={() => { setTheme('terminal'); setIsStarted(true); }} className="w-full" size="lg">
+                    <Button onClick={() => { setView('terminal'); setIsStarted(true); }} className="w-full" size="lg">
                         <Terminal className="mr-2" /> Terminal
                     </Button>
-                    <Button onClick={() => { setTheme('material'); setIsStarted(true); }} className="w-full" size="lg" variant="secondary">
+                    <Button onClick={() => { setView('material'); setIsStarted(true); }} className="w-full" size="lg" variant="secondary">
                         <Notebook className="mr-2" /> Portfolio
                     </Button>
                 </div>
@@ -85,19 +88,21 @@ export default function Home() {
   )
 
   return (
-    <main className="flex flex-col items-center justify-center fixed inset-0">
+    <main className="fixed inset-0 p-4">
       <AnimatePresence mode="wait">
         {!isStarted ? (
-          <StartScreen />
-        ) : theme === 'terminal' ? (
+          <div className="flex items-center justify-center h-full">
+            <StartScreen />
+          </div>
+        ) : view === 'terminal' ? (
           <motion.div
             key="terminal"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, ease: 'easeOut' }}
-            className="w-full h-full flex items-center justify-center p-4 md:p-6 lg:p-8"
+            className="w-full h-full"
           >
-            <TerminalView />
+            <TerminalView onSwitch={switchToMaterial} />
           </motion.div>
         ) : (
           <PortfolioPage />
