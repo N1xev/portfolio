@@ -66,7 +66,7 @@ export const commands = [
     { cmd: 'help', desc: 'Show this help message.' },
   ];
 
-export const welcomeText = `
+export const welcomeTextDesktop = `
 <div class="font-code">
 ███████╗ █████╗ ███╗   ███╗ ██████╗ ██╗   ██╗██╗  ██╗   ██╗ ██████╗  ██████╗
 ██╔════╝██╔══██╗████╗ ████║██╔═══██╗██║   ██║██║  ╚██╗ ██╔╝██╔════╝ ██╔═══██╗
@@ -74,6 +74,18 @@ export const welcomeText = `
 ╚════██║██╔══██║██║╚██╔╝██║██║   ██║██║   ██║██║    ╚██╔╝  ██║   ██║██║   ██║
 ███████║██║  ██║██║ ╚═╝ ██║╚██████╔╝╚██████╔╝███████╗██║██╗╚██████╔╝╚██████╔╝
 ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝ ╚═════╝  ╚═════╝ ╚══════╝╚═╝╚═╝ ╚═════╝  ╚═════╝
+</div>
+<div class="mt-4">Welcome, user. Type 'help' to see available commands.</div>
+`;
+
+export const welcomeTextMobile = `
+<div class="font-code">
+  _________                            .__  __
+ /   _____/ ______________  __ _________|__|/  |_
+ \\_____  \\ /  ___/\\____ \\  \\/ // __ \\__  \\  \\   __\\
+ /        \\___ \\ |  |_> >   / \\  ___// __ \\|  ||  |
+/_______  /____  >|   __/ \\_/   \\___  >____  /__||__|
+        \\/     \\/ |__|              \\/     \\/
 </div>
 <div class="mt-4">Welcome, user. Type 'help' to see available commands.</div>
 `;
