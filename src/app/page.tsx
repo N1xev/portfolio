@@ -29,6 +29,12 @@ export default function Home() {
     };
   }, [isStarted]);
   
+  const viewVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
+    exit: { opacity: 0, y: -20, transition: { duration: 0.3, ease: 'easeIn' } }
+  };
+
   const containerVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: { 
@@ -98,15 +104,25 @@ export default function Home() {
         ) : view === 'terminal' ? (
           <motion.div
             key="terminal"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, ease: 'easeOut' }}
+            variants={viewVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
             className="w-full h-full p-4"
           >
             <TerminalView onSwitch={switchToMaterial} />
           </motion.div>
         ) : (
-          <PortfolioPage onSwitch={switchToTerminal} />
+          <motion.div
+            key="material"
+            variants={viewVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            className="w-full h-full"
+          >
+            <PortfolioPage onSwitch={switchToTerminal} />
+          </motion.div>
         )}
       </AnimatePresence>
     </main>
