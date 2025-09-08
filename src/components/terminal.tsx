@@ -10,6 +10,7 @@ import { ProjectsOutput } from './outputs/projects';
 import { SkillsOutput } from './outputs/skills';
 import { NotFoundOutput } from './outputs/not-found';
 import { motion, AnimatePresence } from 'framer-motion';
+import { SitchOutput } from './outputs/sitch';
 
 export function Terminal() {
   const [history, setHistory] = useState<React.ReactNode[]>([]);
@@ -29,7 +30,7 @@ export function Terminal() {
 
   const processCommand = useCallback(
     (command: string) => {
-      const newHistory = [...history, <div key={history.length}><span className="text-primary">&gt;</span> {command}</div>];
+      const newHistory = [...history, <div className="mt-4" key={history.length}><span className="text-primary">&gt;</span> {command}</div>];
       setCommandHistory(prev => (prev.at(-1) === command ? prev : [...prev, command]));
 
       let output: React.ReactNode;
@@ -44,19 +45,22 @@ export function Terminal() {
           output = <SkillsOutput />;
           break;
         case 'projects':
-          output = <ProjectsOutput onComplete={onCommandComplete} />;
+          output = <ProjectsOutput />;
           break;
         case 'clear':
           setHistory([]);
           onCommandComplete();
           return;
+        case 'sitch':
+          output = <SitchOutput />;
+          break;
         default:
           output = <NotFoundOutput command={command} />;
       }
       
-      setHistory([...newHistory, <div className="mt-4" key={history.length + 1}>{output}</div>]);
+      setHistory([...newHistory, <div className="mt-2" key={history.length + 1}>{output}</div>]);
 
-      if (['skills', 'help', 'clear', 'projects'].includes(command.toLowerCase().trim()) || command.toLowerCase().startsWith('not-found')) {
+       if (['skills', 'help', 'clear', 'projects', 'sitch'].includes(command.toLowerCase().trim()) || command.toLowerCase().startsWith('not-found')) {
          onCommandComplete();
       } else if (command.toLowerCase().trim() !== 'about'){
         onCommandComplete();
@@ -66,11 +70,9 @@ export function Terminal() {
   );
   
   useEffect(() => {
-    setHistory([<WelcomeOutput key="welcome" onComplete={() => {
-        setIsProcessing(false);
-        inputRef.current?.focus();
-    }} />]);
-  }, []);
+    setHistory([<WelcomeOutput key="welcome" />]);
+     onCommandComplete();
+  }, [onCommandComplete]);
 
   useEffect(() => {
     if (containerRef.current) {
@@ -87,7 +89,7 @@ export function Terminal() {
       const navHistory = commandHistory.slice(-5);
       const newSuggestions = await getCommandSuggestions(inputValue, navHistory);
       setSuggestions(newSuggestions);
-    }, 150);
+    }, 50);
     return () => clearTimeout(handler);
   }, [inputValue, commandHistory, isProcessing]);
 

@@ -25,7 +25,7 @@ const UserInfo = ({label, value}: {label: string, value: string}) => (
 );
 
 
-export function SystemFetch() {
+export function SitchOutput() {
     const [os, setOs] = useState('...');
     const [shell, setShell] = useState('...');
 

@@ -1,3 +1,4 @@
+
 'use server';
 
 /**
@@ -46,7 +47,7 @@ const prompt = ai.definePrompt({
 
 You will suggest commands based on the user's input and their navigation history.
 
-Available commands are: projects, skills, about, clear.
+Available commands are: projects, skills, about, clear, sitch.
 
 Navigation History:
 {{#each navigationHistory}}

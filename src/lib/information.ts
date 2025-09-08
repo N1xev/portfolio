@@ -62,6 +62,7 @@ export const commands = [
     { cmd: 'about', desc: 'Display a short bio.' },
     { cmd: 'skills', desc: 'List my technical skills.' },
     { cmd: 'projects', desc: 'Showcase my recent projects.' },
+    { cmd: 'sitch', desc: 'Display system information.' },
     { cmd: 'clear', desc: 'Clear the terminal screen.' },
     { cmd: 'help', desc: 'Show this help message.' },
   ];
