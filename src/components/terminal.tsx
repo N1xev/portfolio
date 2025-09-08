@@ -40,6 +40,8 @@ export function Terminal({ onSwitch }: TerminalProps) {
   const setTheme = (theme: 'dark' | 'light') => {
       const root = window.document.documentElement;
       root.classList.toggle('dark', theme === 'dark');
+      root.classList.toggle('material-dark', theme === 'dark');
+      root.classList.toggle('material-light', theme === 'light');
   }
 
   const processCommand = useCallback(
