@@ -50,6 +50,7 @@ export default function Home() {
   };
 
   const switchToMaterial = () => setView('material');
+  const switchToTerminal = () => setView('terminal');
 
   const StartScreen = () => (
     <motion.div
@@ -105,7 +106,7 @@ export default function Home() {
             <TerminalView onSwitch={switchToMaterial} />
           </motion.div>
         ) : (
-          <PortfolioPage />
+          <PortfolioPage onSwitch={switchToTerminal} />
         )}
       </AnimatePresence>
     </main>

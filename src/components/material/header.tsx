@@ -1,9 +1,13 @@
 
-import { Sun, Moon } from 'lucide-react';
+import { Sun, Moon, Terminal } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useEffect, useState } from 'react';
 
-export function Header() {
+interface HeaderProps {
+    onSwitch?: () => void;
+}
+
+export function Header({ onSwitch }: HeaderProps) {
     const [isDark, setIsDark] = useState(false);
 
     useEffect(() => {
@@ -40,6 +44,9 @@ export function Header() {
                 </div>
                 <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
                     <nav className="flex items-center">
+                        <Button variant="ghost" size="icon" onClick={onSwitch} aria-label="Switch to Terminal">
+                            <Terminal className="h-5 w-5" />
+                        </Button>
                         <Button variant="ghost" size="icon" onClick={toggleTheme} aria-label="Toggle theme">
                             {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
                         </Button>

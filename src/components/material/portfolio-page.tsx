@@ -6,7 +6,11 @@ import { AboutSection } from './about-section';
 import { SkillsSection } from './skills-section';
 import { ProjectsSection } from './projects-section';
 
-export function PortfolioPage() {
+interface PortfolioPageProps {
+    onSwitch?: () => void;
+}
+
+export function PortfolioPage({ onSwitch }: PortfolioPageProps) {
     return (
         <motion.div
             key="material-portfolio"
@@ -17,7 +21,7 @@ export function PortfolioPage() {
             className="w-full h-full"
         >
             <div className="h-full overflow-y-auto bg-background text-foreground">
-                <Header />
+                <Header onSwitch={onSwitch} />
                 <main>
                     <AboutSection />
                     <SkillsSection />
