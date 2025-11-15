@@ -1,12 +1,12 @@
 ---
 title: "My Neovim Config: LlamaVim"
 description: "Explore my custom Neovim setup built on NvChad, featuring AI-powered completions, modern plugins, and a beautiful theme for an enhanced coding experience."
-tags: ["neovim", "configuration", "productivity", "nvchad"]
+tags: ["neovim", "configuration"]
 date: "2025-11-15"
 image: "/llamavim.png"
 ---
 
-# Powering Productivity with NvChad
+# Powering productivity with Neovim/NvChad
 
 Neovim has become my go-to editor for development, and with NvChad as the foundation, I've crafted a setup that's both powerful and beautiful. In this post, I'll walk you through the key aspects of my configuration, highlighting the plugins, themes, and customizations that make my workflow efficient and enjoyable.
 

@@ -30,7 +30,6 @@ export default defineNuxtConfig({
 
   app: {
     head: {
-      title: "Eng.Samouly", // default fallback title
       htmlAttrs: {
         lang: "en",
       },
