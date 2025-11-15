@@ -1,9 +1,10 @@
 <template>
   <UApp>
-    <HeaderComp />
+  <ContentFullSearch />
+  <HeaderComp />
     <UMain>
       <NuxtLayout>
-        <NuxtPage />
+        <NuxtPage  />
       </NuxtLayout>
     </UMain>
     <FooterComp />
@@ -14,7 +15,6 @@
 const appConfig = useAppConfig();
 
 updateAppConfig(appConfig);
-
 
 useSeoMeta({
   title: 'Alaa El-Samouly',

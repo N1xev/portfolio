@@ -19,7 +19,7 @@ export default defineNuxtConfig({
     build: {
       markdown: {
         highlight: {
-          langs: ["lua"],
+          langs: ["lua", "go"],
         },
       },
     },
@@ -32,6 +32,7 @@ export default defineNuxtConfig({
     head: {
       htmlAttrs: {
         lang: "en",
+        style: 'scroll-behavior: smooth'
       },
       link: [{ rel: "icon", type: "image/x-icon", href: "/samouly.png" }],
     },

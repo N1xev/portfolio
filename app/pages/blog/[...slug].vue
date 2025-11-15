@@ -18,51 +18,81 @@ const displayTags = computed(() => {
     ? post.value.meta.tags.join(", ")
     : post.value.meta.tags;
 });
+
+const route = useRoute();
+
+const { data: page } = await useAsyncData(route.path, () =>
+  queryCollection("blog").path(route.path).first(),
+);
+if (!page.value) {
+  throw createError({
+    statusCode: 404,
+    statusMessage: "Page not found",
+    fatal: true,
+  });
+}
 </script>
 
 <template>
-  <div class="container justify-between items-center mx-auto px-6 py-8">
-    <!-- Back button -->
-    <div class="mb-6 flex items-center justify-between">
-      <UButton class="text-sm" variant="ghost" to="/blog">
-        Back to Blog
-      </UButton>
-      <UButton variant="ghost" icon="i-heroicons-tag" class="text-sm">
-        {{ displayTags }}
-      </UButton>
-    </div>
+  <div>
+    <div class="container justify-between items-center mx-auto px-6 py-8">
+      <!-- Back button -->
+      <div class="mb-6 flex items-center justify-between">
+        <UButton class="text-sm" variant="ghost" to="/blog">
+          Back to Blog
+        </UButton>
+        <UButton variant="ghost" icon="i-heroicons-tag" class="text-sm">
+          {{ displayTags }}
+        </UButton>
+      </div>
 
-    <!-- Post Header -->
-    <div class="mb-6">
-      <div class="flex items-center justify-between">
-        <h1 class="text-3xl font-bold">{{ post.title }}</h1>
-        <div class="flex items-center gap-2">
-          <UButton variant="ghost" icon="i-heroicons-calendar" class="text-sm">
-            {{ formattedDate }}
-          </UButton>
+      <!-- Table of contentooo -->
+      <UContentToc
+        class="border-dashed border-y md:hidden border-gray-700 md:border-x mb-4"
+        title="On this blog post!"
+        highlight
+        highlight-color="gray"
+        color="gray"
+        :links="page.body.toc.links"
+      />
+
+      <!-- Post Header -->
+      <div class="mb-6">
+        <div class="flex items-center justify-between">
+          <h1 class="text-3xl font-bold">{{ post.title }}</h1>
+          <div class="flex items-center gap-2">
+            <UButton
+              variant="ghost"
+              icon="i-heroicons-calendar"
+              class="text-sm"
+            >
+              {{ formattedDate }}
+            </UButton>
+          </div>
         </div>
       </div>
-    </div>
-    <!-- Post Image -->
-    <div v-if="post.meta.image" class="mb-6">
-      <div
-        class="flex items-center overflow-hidden rounded-lg h-130 justify-center"
-      >
-        <img
+      
+      <!-- Post Image -->
+      <div v-if="post.meta.image" class="mb-6">
+        <NuxtImg
           :src="post.meta.image"
           alt="Post Image"
-          class="w-full fit rounded-lg"
-        >
+          class="w-full max-h-130 object-cover rounded-lg"
+        />
+      </div>
+
+      <!-- Post Content -->
+      <div
+        class="prose prose-sm prose-headings:text-xl prose-a:text-primary-500"
+      >
+        <ContentRenderer
+          v-if="post"
+          :value="post"
+          color="gray"
+          class="prose prose-sm prose-headings:text-xl prose-a:text-primary-500"
+        />
       </div>
     </div>
-
-    <div class="prose prose-sm prose-headings:text-xl prose-a:text-primary-500">
-      <ContentRenderer
-        v-if="post"
-        :value="post"
-        color="gray"
-        class="prose prose-sm prose-headings:text-xl prose-a:text-primary-500"
-      />
-    </div>
+    <PrevNextPost />
   </div>
 </template>

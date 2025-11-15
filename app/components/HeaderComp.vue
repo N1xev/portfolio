@@ -10,13 +10,32 @@ const items = computed<NavigationMenuItem[]>(() => [
     icon: "i-lucide-newspaper",
     active: route.path.startsWith("/blog"),
   },
+  {
+    label: "Projects",
+    to: "/#projects",
+    icon: "i-lucide-layout-dashboard",
+    active: route.path === ("/projects") || route.hash === "#projects",
+  },
+  {
+    label: "About",
+    to: "/#about",
+    icon: "i-lucide-info",
+    active: route.path === ("/about") || route.hash === "#about",
+  },
+  {
+    label: "Contact",
+    to: "/#contact",
+    icon: "i-lucide-mail",
+    active: route.path === ("/contact") || route.hash === "#contact",
+  },
 ]);
 </script>
 
 <template>
-  <div class="sticky top-0 z-50 bottom-0 border-b border-dashed border-default">
+  <div class="sticky top-0 z-50 bottom-0 border-b border-dashed border-gray-700">
     <UHeader
-      class="container border-x border-b-0 border-dashed border-default max-w-5xl justify-between items-center mx-auto"
+      mode="drawer"
+      class="container border-x border-b-0 border-dashed border-gray-700 max-w-5xl justify-between items-center mx-auto"
     >
       <template #title> Alaa Elsamouly </template>
 
