@@ -1,4 +1,5 @@
 <script setup lang="ts">
+/*
 import type { NavigationMenuItem } from "@nuxt/ui";
 
 const items: NavigationMenuItem[] = [
@@ -17,7 +18,7 @@ const items: NavigationMenuItem[] = [
     to: "https://github.com/nuxt/ui/releases",
     target: "_blank",
   },
-];
+]; */
 </script>
 
 <template>
@@ -29,31 +30,31 @@ const items: NavigationMenuItem[] = [
     >
       <template #left>
         <p class="text-muted text-sm">
-          Copyright © {{ new Date().getFullYear() }}
+          Copyright © {{ new Date().getFullYear() }} | Alaa Elsamouly
         </p>
       </template>
 
-      <UNavigationMenu :items="items" variant="link" />
+      <!-- <UNavigationMenu :items="items" variant="link" /> -->
 
       <template #right>
         <UButton
           icon="i-simple-icons-discord"
           variant="ghost"
-          to="https://go.nuxt.com/discord"
+          to="https://discord.gg/ENhtxaH7"
           target="_blank"
           aria-label="Discord"
         />
         <UButton
           icon="i-simple-icons-x"
           variant="ghost"
-          to="https://go.nuxt.com/x"
+          to="https://x.com/o6r_0"
           target="_blank"
           aria-label="X"
         />
         <UButton
           icon="i-simple-icons-github"
           variant="ghost"
-          to="https://github.com/nuxt/nuxt"
+          to="https://github.com/N1xev"
           target="_blank"
           aria-label="GitHub"
         />

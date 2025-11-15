@@ -1,5 +1,6 @@
 <template>
-  <div class="relative">
+  <div
+    class="relative h-[calc(100vh-(var(--ui-header-height) + var(ui-footer-height)))]">
     <div class="fixed inset-0 pointer-events-none">
       <div class="max-w-5xl mx-auto h-full relative">
         <div
