@@ -52,7 +52,7 @@ const displayTags = computed(() => {
           :src="post.meta.image"
           alt="Post Image"
           class="w-full fit rounded-lg"
-        />
+        >
       </div>
     </div>
 

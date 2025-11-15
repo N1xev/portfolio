@@ -1,9 +1,9 @@
 ---
-title: 'My Neovim Config: LlamaVim'
-description: 'Explore my custom Neovim setup built on NvChad, featuring AI-powered completions, modern plugins, and a beautiful theme for an enhanced coding experience.'
-tags: ['neovim', 'configuration', 'productivity', 'nvchad']
-date: '2025-11-15'
-image: '/llamavim.png'
+title: "My Neovim Config: LlamaVim"
+description: "Explore my custom Neovim setup built on NvChad, featuring AI-powered completions, modern plugins, and a beautiful theme for an enhanced coding experience."
+tags: ["neovim", "configuration", "productivity", "nvchad"]
+date: "2025-11-15"
+image: "/llamavim.png"
 ---
 
 # Powering Productivity with NvChad
@@ -301,28 +301,33 @@ return {
 The configuration includes many custom keybindings for common tasks:
 
 ### General
+
 - `<leader>q`: Quit Neovim
 - `<leader>y`: Yank all text
 - `<leader>R`: Remove all text
 - `<Esc>`: Clear search highlights
 
 ### Navigation
+
 - `H/L`: Previous/Next buffer
 - `<C-h/j/k/l>`: Window navigation
 - `<leader>e`: Toggle file explorer
 
 ### AI and Completion
+
 - `<C-Tab>`: Accept AI suggestion (Supermaven)
 - `<A-w>`: Accept word suggestion
 - `<leader>oa`: Toggle autocomplete
 
 ### Project Management
+
 - `<leader>nb`: Bootstrap new project
 - `<leader>nr`: Run code
 - `<leader>nf`: Find config files
 - `<leader>ng`: Grep config files
 
 ### Plugin Management
+
 - `<leader>pi`: Install plugins
 - `<leader>ps`: Sync plugins
 - `<leader>pu`: Update plugins

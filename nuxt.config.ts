@@ -28,15 +28,13 @@ export default defineNuxtConfig({
     plugins: [tailwindcss()],
   },
 
-app: {
+  app: {
     head: {
-      title: 'Eng.Samouly', // default fallback title
+      title: "Eng.Samouly", // default fallback title
       htmlAttrs: {
-        lang: 'en',
+        lang: "en",
       },
-      link: [
-        { rel: 'icon', type: 'image/x-icon', href: '/samouly.png' },
-      ],
+      link: [{ rel: "icon", type: "image/x-icon", href: "/samouly.png" }],
     },
   },
 });

@@ -11,9 +11,7 @@
 </template>
 
 <script setup lang="ts">
+const appConfig = useAppConfig();
 
-const appConfig = useAppConfig()
-
-updateAppConfig(appConfig)
-
+updateAppConfig(appConfig);
 </script>
