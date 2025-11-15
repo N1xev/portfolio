@@ -35,5 +35,6 @@ export default defineNuxtConfig({
       },
       link: [{ rel: "icon", type: "image/x-icon", href: "/samouly.png" }],
     },
+    pageTransition: { name: 'page', mode: 'in-out' },
   },
 });
