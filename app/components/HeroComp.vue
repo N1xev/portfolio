@@ -20,8 +20,10 @@ const links = ref([
 
 <template>
   <UPageHero
+    class="py-4"
     title="Consider this your invitation."
     description="I'm Alaa, a 19 year old Web developer from Egypt. crafting digital experiences at the intersection of design, technology, and user experience."
     :links="links"
   />
+  <Marquee />
 </template>

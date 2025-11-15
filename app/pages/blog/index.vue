@@ -56,7 +56,7 @@ const authors = ref([
         :authors="authors"
         :to="post.path"
         orientation="horizontal"
-        class="flex flex-col w-full border-x-0 bg-transparent outline-0 ring-0 border-b last:border-b-0 border-dashed border-gray-300 dark:border-gray-700 rounded-none"
+        class="flex flex-col w-full ml-px border-x-0 bg-transparent outline-0 ring-0 border-b last:border-b-0 border-dashed border-gray-300 dark:border-gray-700 rounded-none"
       />
     </div>
   </div>

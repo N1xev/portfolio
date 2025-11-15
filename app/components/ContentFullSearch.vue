@@ -17,7 +17,7 @@ const searchTerm = ref("");
       :files="files"
       :navigation="navigation"
       :fuse="{ resultLimit: 20 }"
-      :overlay="false"
+      :overlay="true"
     />
   </ClientOnly>
 </template>

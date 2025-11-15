@@ -53,6 +53,8 @@ if (!page.value) {
         highlight
         highlight-color="gray"
         color="gray"
+        open="true"
+        default-open="false"
         :links="page.body.toc.links"
       />
 
