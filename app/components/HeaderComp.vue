@@ -32,10 +32,10 @@ const items = computed<NavigationMenuItem[]>(() => [
 </script>
 
 <template>
-  <div class="sticky top-0 z-50 bottom-0 border-b border-dashed border-gray-700">
+  <div class="sticky top-0 z-50 bottom-0 border-b border-dashed   border-gray-300 dark:border-gray-700">
     <UHeader
       mode="drawer"
-      class="container border-x border-b-0 border-dashed border-gray-700 max-w-5xl justify-between items-center mx-auto"
+      class="container border-x border-b-0 border-dashed border-gray-300 dark:border-gray-700 max-w-5xl justify-between items-center mx-auto"
     >
       <template #title> Alaa Elsamouly </template>
 

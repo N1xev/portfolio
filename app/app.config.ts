@@ -33,11 +33,11 @@ export default defineAppConfig({
       variants: {
         direction: {
           left: {
-            link: ["border-y border-l-0 border-r border-gray-700 border-dashed"],
+            link: ["border-y border-l-0 border-r border-gray-300 dark:border-gray-700 border-dashed"],
             linkLeadingIcon: ["group-active:-translate-x-0.5"],
           },
           right: {
-            link: ["text-right border-y border-l border-r-0 border-gray-700 border-dashed"],
+            link: ["text-right border-y border-l border-r-0 border-gray-300 dark:border-gray-700 border-dashed"],
             linkLeadingIcon: ["group-active:translate-x-0.5"],
           },
         },

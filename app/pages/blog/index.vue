@@ -32,7 +32,7 @@ const authors = ref([
   <div
     class="container flex flex-col justify-between items-center mx-auto "
   >
-    <div class="flex w-full items-center justify-between border-b border-dashed border-gray-700 px-4 sm:px-6 lg:px-8 py-6">
+    <div class="flex w-full items-center justify-between border-b border-dashed border-gray-300 dark:border-gray-700 px-4 sm:px-6 lg:px-8 py-6">
       <div>
       <h1 class="text-3xl text-center font-bold">My Blog</h1>
       </div>
@@ -56,7 +56,7 @@ const authors = ref([
         :authors="authors"
         :to="post.path"
         orientation="horizontal"
-        class="flex flex-col w-full border-x-0 bg-transparent outline-0 ring-0 border-b last:border-b-0 border-dashed border-gray-700 rounded-none"
+        class="flex flex-col w-full border-x-0 bg-transparent outline-0 ring-0 border-b last:border-b-0 border-dashed border-gray-300 dark:border-gray-700 rounded-none"
       />
     </div>
   </div>

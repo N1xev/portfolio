@@ -48,7 +48,7 @@ if (!page.value) {
 
       <!-- Table of contentooo -->
       <UContentToc
-        class="border-dashed border-y md:hidden border-gray-700 md:border-x mb-4"
+        class="border-dashed border-y md:hidden border-gray-300 dark:border-gray-700 md:border-x mb-4"
         title="On this blog post!"
         highlight
         highlight-color="gray"
