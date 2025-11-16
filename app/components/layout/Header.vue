@@ -81,7 +81,7 @@ onMounted(() => {
   >
     <UHeader
       mode="drawer"
-      class="container border-x border-b-0 border-dashed border-gray-300 dark:border-gray-700 max-w-6xl justify-between items-center mx-auto"
+      class="container border-x border-b-0 backdrop-blur-lg bg-default/90 border-dashed border-gray-300 dark:border-gray-700 max-w-6xl justify-between items-center mx-auto"
     >
       <template #title> Alaa Elsamouly </template>
 

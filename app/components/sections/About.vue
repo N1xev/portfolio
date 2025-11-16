@@ -4,11 +4,11 @@
     <!-- First row for the Main card -->
     <div class="grid grid-cols-1 lg:grid-cols-[1fr_1fr] ">
       <UCard class="ring-0 rounded-none border-dashed border-x-0 border-gray-300 dark:border-gray-700 border-b md:border-b-0 border-t-0 pt-16">
-        <h1 class="text-4xl font-bold mb-12 underline decoration-dashed">Get to know me:</h1> 
+        <h1 class="text-4xl font-bold mb-8 underline decoration-dashed">Get to know me:</h1> 
         <p class="text-lg text-gray-600 dark:text-gray-400">
-          I'm Alaa Elsamouly, a 19-year-old web developer from Egypt, passionate about building real, production-ready applications. I specialize in Go for backend and Bun, Next.js, Nuxt.js for frontend, and I focus on writing clean, scalable, and maintainable code.
+          I'm <ProseCode>Alaa</ProseCode> Elsamouly, a 19 y/o software engineer from <ProseCode>Egypt</ProseCode>, passionate about building real, production-ready applications. I specialize in Go for backend and Bun, Next.js, Nuxt.js for frontend, and I focus on writing clean, <ProseCode>scalable</ProseCode> and <ProseCode>maintainable</ProseCode> code.
           I enjoy building projects that solve real problems—ranging from Discord bots and CLI/TUI tools to full web platforms—and I'm always looking for new challenges to grow my skills.
-          My goal is to deliver reliable, efficient solutions and to tackle complex problems with confidence.
+          My goal is to deliver reliable, efficient solutions and to tackle complex problems with <ProseCode>confidenc</ProseCode>.
         </p>
       </UCard>
       <NuxtImg
@@ -51,11 +51,11 @@
       
       <UCard class="rounded-none ring-0 border-dashed border-gray-300 dark:border-gray-700 border-t border-l-0 border-r-0 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300">
         <div class="flex items-center gap-3 mb-3">
-          <UIcon name="i-heroicons-rocket-launch" class="text-xl" />
-          <h3 class="text-lg font-semibold">Problem Solver</h3>
+          <UIcon name="i-heroicons-cog-6-tooth" class="text-xl" />
+          <h3 class="text-lg font-semibold">DevOps</h3>
         </div>
         <p class="text-sm text-gray-600 dark:text-gray-400">
-          Building real solutions for real problems, from Discord bots to full-stack platforms
+       Automating deployments and infrastructure with CI/CD pipelines, Docker, and cloud platforms
         </p>
       </UCard>
     </div>
