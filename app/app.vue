@@ -1,13 +1,13 @@
 <template>
   <UApp>
-  <ContentFullSearch />
-  <HeaderComp />
+  <UiContentFullSearch />
+  <LayoutHeader />
     <UMain>
       <NuxtLayout>
         <NuxtPage  />
       </NuxtLayout>
     </UMain>
-    <FooterComp />
+    <LayoutFooter />
   </UApp>
 </template>
 

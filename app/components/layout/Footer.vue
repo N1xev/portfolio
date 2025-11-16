@@ -26,7 +26,7 @@ const items: NavigationMenuItem[] = [
     class="bottom-0 backdrop-blur-md bg-default/90 border-t border-dashed border-gray-300 dark:border-gray-700"
   >
     <UFooter
-      class="container border-x border-dashed border-gray-300 dark:border-gray-700 max-w-5xl justify-between items-center mx-auto"
+      class="container border-x border-dashed border-gray-300 dark:border-gray-700 max-w-6xl justify-between items-center mx-auto"
     >
       <template #left>
         <p class="text-muted text-sm">

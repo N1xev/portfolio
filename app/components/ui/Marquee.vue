@@ -109,7 +109,7 @@ const testimonials: { user: UserProps; quote: string }[] = [
     <UMarquee
       pause-on-hover
       :overlay="false"
-      :ui="{ root: '[--gap:--spacing(0)]', content: 'w-auto py-0' }"
+      :ui="{ root: '[--gap:--spacing(0)] [--duration:40s] mx-px', content: 'w-auto py-0' }"
     >
       <UPageCard
         v-for="(testimonial, index) in testimonials"
@@ -119,7 +119,7 @@ const testimonials: { user: UserProps; quote: string }[] = [
         :ui="{
           description:
             'before:content-[open-quote] after:content-[close-quote] line-clamp-3',
-          root: 'rounded-none border-dashed border border-r-0 border-b-0 border-gray-300 dark:border-gray-700 ring-0'
+          root: 'rounded-none border-dashed border border-r-0  border-gray-300 dark:border-gray-700 ring-0'
         }"
         class="w-80 shrink-0"
       >

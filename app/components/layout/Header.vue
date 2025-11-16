@@ -5,25 +5,32 @@ const route = useRoute();
 
 const items = computed<NavigationMenuItem[]>(() => [
   {
-    label: "Projects",
-    to: "/projects",
-    active: route.path === "/projects" || route.hash === "#projects",
+    label: "Home",
+    to: "#home",
+    active: route.hash === "#home",
   },
   {
     label: "About",
-    to: "/about",
-    active: route.path === "/about" || route.hash === "#about",
+    to: "#about",
+    active: route.hash === "#about",
+  },
+  {
+    label: "Projects",
+    to: "#projects",
+    active: route.hash === "#projects",
   },
   {
     label: "Contact",
-    to: "/contact",
-    active: route.path === "/contact" || route.hash === "#contact",
+    to: "#contact",
+    active: route.hash === "#contact",
   },
   {
     label: "Blog",
     to: "/blog",
     icon: "i-lucide-newspaper",
     active: route.path.startsWith("/blog"),
+    variant: "subtle",
+    color: "error",
   },
 ]);
 </script>
@@ -34,20 +41,20 @@ const items = computed<NavigationMenuItem[]>(() => [
   >
     <UHeader
       mode="drawer"
-      class="container border-x border-b-0 border-dashed border-gray-300 dark:border-gray-700 max-w-5xl justify-between items-center mx-auto"
+      class="container border-x border-b-0 border-dashed border-gray-300 dark:border-gray-700 max-w-6xl justify-between items-center mx-auto"
     >
       <template #title> Alaa Elsamouly </template>
 
       <UNavigationMenu :items="items" />
 
       <template #right>
-        <ColorModeButton />
+        <UiColorModeButton />
 
         <UTooltip text="Open on GitHub" :kbds="['meta', 'G']">
           <UButton
             color="gray"
             variant="ghost"
-            to="https://github.com/nuxt/ui"
+            to="https://github.com/N1xev/portfolio"
             target="_blank"
             icon="i-simple-icons-github"
             aria-label="GitHub"

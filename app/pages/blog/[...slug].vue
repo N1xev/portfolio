@@ -53,8 +53,7 @@ if (!page.value) {
         highlight
         highlight-color="gray"
         color="gray"
-        open="true"
-        default-open="false"
+        :defaultOpen="false"
         :links="page.body.toc.links"
       />
 
@@ -95,6 +94,6 @@ if (!page.value) {
         />
       </div>
     </div>
-    <PrevNextPost />
+    <UiPrevNextPost />
   </div>
 </template>
