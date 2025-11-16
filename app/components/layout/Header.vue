@@ -2,28 +2,29 @@
 import type { NavigationMenuItem } from "@nuxt/ui";
 
 const route = useRoute();
+const activeSection = ref('#home');
 
 const items = computed<NavigationMenuItem[]>(() => [
   {
     label: "Home",
     to: "#home",
-    active: route.hash === "#home",
+    active: activeSection.value === "#home",
   },
   {
     label: "About",
     to: "#about",
-    active: route.hash === "#about",
+    active: activeSection.value === "#about",
   },
-  {
+/*  {
     label: "Projects",
     to: "#projects",
-    active: route.hash === "#projects",
+    active: activeSection.value === "#projects",
   },
   {
     label: "Contact",
     to: "#contact",
-    active: route.hash === "#contact",
-  },
+    active: activeSection.value === "#contact",
+  }, */
   {
     label: "Blog",
     to: "/blog",
@@ -33,6 +34,45 @@ const items = computed<NavigationMenuItem[]>(() => [
     color: "error",
   },
 ]);
+
+onMounted(() => {
+  // Initialize from URL hash if exists
+  if (route.hash) {
+    activeSection.value = route.hash;
+  }
+
+  // Intersection Observer to detect which section is in view
+  const sections = ['#home', '#about', '#projects', '#contact'];
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = `#${entry.target.id}`;
+          activeSection.value = id;
+          // Optional: update URL hash without scrolling
+          window.history.replaceState(null, '', id);
+        }
+      });
+    },
+    {
+      threshold: 0.5, // Section needs to be 50% visible
+      rootMargin: '-100px 0px -100px 0px' // Adjust based on your header height
+    }
+  );
+
+  // Observe all sections
+  sections.forEach((sectionId) => {
+    const element = document.querySelector(sectionId);
+    if (element) {
+      observer.observe(element);
+    }
+  });
+
+  // Cleanup
+  onUnmounted(() => {
+    observer.disconnect();
+  });
+});
 </script>
 
 <template>
