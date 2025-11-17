@@ -6,7 +6,7 @@
       <UCard class="ring-0 rounded-none border-dashed border-x-0 border-gray-300 dark:border-gray-700 border-b md:border-b-0 border-t-0 pt-16">
         <h1 class="text-4xl font-bold mb-8 underline decoration-dashed">Get to know me:</h1> 
         <p class="text-lg text-gray-600 dark:text-gray-400">
-          I'm <ProseCode>Alaa</ProseCode> Elsamouly, software engineer from <ProseCode>Egypt</ProseCode>, passionate about building real, production-ready applications. I specialize in Go for backend and Bun, Next.js, Nuxt.js for frontend, and I focus on writing clean, <ProseCode>scalable</ProseCode> and <ProseCode>maintainable</ProseCode> code.
+          I'm <ProseCode>Alaa</ProseCode> Elsamouly, software engineer from <ProseCode>Egypt</ProseCode>, passionate about building real, production-ready applications. I specialize in Go/NodeJS for backend and Bun, Next.js, Nuxt.js for frontend, and I focus on writing clean, <ProseCode>scalable</ProseCode> and <ProseCode>maintainable</ProseCode> code.
           I enjoy building projects that solve real problems—ranging from Discord bots and CLI/TUI tools to full web platforms—and I'm always looking for new challenges to grow my skills.
           My goal is to deliver reliable, efficient solutions and to tackle complex problems with <ProseCode>confidence</ProseCode>.
         </p>

@@ -19,12 +19,12 @@ const items = computed<NavigationMenuItem[]>(() => [
     label: "Projects",
     to: "#projects",
     active: activeSection.value === "#projects",
-  },
+  },*/
   {
     label: "Contact",
     to: "#contact",
     active: activeSection.value === "#contact",
-  }, */
+  },
   {
     label: "Blog",
     to: "/blog",

@@ -19,6 +19,7 @@
     "@tailwindcss/vite": "^4.1.17",
     "better-sqlite3": "^12.4.1",
     "eslint": "^9.0.0",
+    "gsap": "^3.13.0",
     "nuxt": "^4.2.1",
     "tailwindcss": "^4.1.17",
     "typescript": "^5.6.3",
@@ -26,6 +27,7 @@
     "vue-router": "^4.6.3"
   },
   "devDependencies": {
+    "@iconify-json/heroicons": "^1.2.3",
     "@iconify-json/lucide": "^1.2.73",
     "@iconify-json/vscode-icons": "^1.2.34"
   }

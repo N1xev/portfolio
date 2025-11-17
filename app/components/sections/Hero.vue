@@ -1,30 +1,57 @@
-<script setup lang="ts">
-const links = ref([
-  {
-    label: "Github",
-    to: "https://github.com/N1xev",
-    icon: "i-lucide-github",
-    color: "neutral",
-    variant: "ghost",
-    target: "_blank",
-  },
-  {
-    label: "My Blog",
-    to: "/blog",
-    color: "neutral",
-    variant: "subtle",
-    trailingIcon: "i-lucide-arrow-right",
-  },
-]);
-</script>
+<script setup lang="ts"></script>
 
 <template>
-  <section id="home" class="flex flex-col h-full items-center justify-center">
-    <UPageHero
-      title="Consider this your invitation."
-      description="Software engineer from Egypt. Building scalable applications that solve real problems with clean, maintainable code and great user experiences."
-      :links="links"
-    />
-    <UiMarquee />
+  <section
+    id="home"
+    class="flex flex-col h-[calc(100vh-69px)] border-b border-dashed border-gray-300 dark:border-gray-700 items-center justify-center"
+  >
+    <div
+      class="w-full max-w-(--ui-container) mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:grid py-24 sm:py-32 lg:py-40 gap-16 sm:gap-y-24"
+    >
+      <div class="text-center">
+        <UiSplitText
+          text="Consider this your invetation."
+          class-name="text-5xl sm:text-7xl font-semibold text-center"
+          :delay="100"
+          :duration="1"
+          ease="bounce.out"
+          split-type="words"
+          :from="{ opacity: 0, y: 40 }"
+          :to="{ opacity: 1, y: 0 }"
+          :threshold="0"
+          root-margin="-100px"
+          text-align="center"
+        />
+        <div class="text-lg sm:text-xl/8 text-muted text-balance mt-6">
+          Software engineer from Egypt. Building scalable applications that
+          solve real problems with clean, maintainable code and great user
+          experiences.
+        </div>
+        <div class="mt-10">
+          <div class="flex flex-wrap gap-x-6 gap-y-3 justify-center">
+            <UButton
+              color="neutral"
+              variant="ghost"
+              size="xl"
+              to="https://github.com/N1xev"
+              icon="i-lucide-github"
+              target="_blank"
+            >
+              WareHouse
+            </UButton>
+            <UButton
+              color="neutral"
+              variant="subtle"
+              size="xl"
+              to="/blog"
+              icon="i-simple-icons:ollama"
+            >
+              My Blog
+            </UButton>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 </template>
+
