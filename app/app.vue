@@ -19,10 +19,21 @@ updateAppConfig(appConfig);
 useSeoMeta({
   title: 'Alaa El-Samouly',
   ogTitle: 'Alaa El-Samouly',
-  description: 'I&apos;m Alaa, a 19 year old Web developer from Egypt.',
-  ogDescription: 'I&apos;m Alaa, a 19 year old Web developer from Egypt.',
-  ogImage: '/samouly.png',
+  twitterTitle: 'Alaa El-Samouly',
+  description: "a software engineer from Egypt.",
+  ogDescription: "a software engineer from Egypt.",
+  twitterDescription: "a software engineer from Egypt.",
+  ogUrl: 'https://samouly.dev',
+  ogImage: '/samouly-banner.png',
+  icon: '/samouly.png',
   twitterCard: '/samouly.png',
+  twitterImage: '/samouly-banner.png'
+})
+
+useHead({
+  htmlAttrs: {
+    lang: 'en'
+  }
 })
 </script>
 

@@ -2,51 +2,72 @@
 @import "@nuxt/ui";
 
 @theme static {
-    /* Override default gray color */
-    --color-gray-50: oklch(96.7% 0.003 264.542);
-    --color-gray-100: oklch(92.8% 0.006 264.531);
-    --color-gray-200: oklch(87.2% 0.01 258.338);
-    --color-gray-300: oklch(70.7% 0.022 261.325);
-    --color-gray-400: oklch(55.1% 0.027 264.364);
-    --color-gray-500: oklch(44.6% 0.03 256.802);
-    --color-gray-600: oklch(37.3% 0.034 259.733);
-    --color-gray-700: oklch(27.8% 0.033 256.848);
-    --color-gray-800: oklch(21% 0.034 264.665);
-    --color-gray-900: oklch(13% 0.028 261.692);
-    --color-gray-950: #052e16;
+  /* Override default gray color */
+  --color-gray-50: oklch(96.7% 0.003 264.542);
+  --color-gray-100: oklch(92.8% 0.006 264.531);
+  --color-gray-200: oklch(87.2% 0.01 258.338);
+  --color-gray-300: oklch(70.7% 0.022 261.325);
+  --color-gray-400: oklch(55.1% 0.027 264.364);
+  --color-gray-500: oklch(44.6% 0.03 256.802);
+  --color-gray-600: oklch(37.3% 0.034 259.733);
+  --color-gray-700: oklch(27.8% 0.033 256.848);
+  --color-gray-800: oklch(21% 0.034 264.665);
+  --color-gray-900: oklch(13% 0.028 261.692);
+  --color-gray-950: #052e16;
 }
 
 :root {
-    font-family: Monaspace Neon Var;
-    pre {
-        overflow-x: auto;
-        margin-bottom: 3px;
-    }
-    pre code {
-        white-space: pre;
-        display: block;
-    }
+  word-spacing: -1px;
+  font-family: Monaspace Radon Var;
 
-    pre::-webkit-scrollbar {
-        height: 16px;
-        background: transparent;
-    }
+  pre {
+    overflow-x: auto;
+    margin-bottom: 3px;
+  }
+  pre code {
+    white-space: pre;
+    display: block;
+  }
 
-    pre::-webkit-scrollbar-thumb {
-        background: rgb(3 7 18);
-        border-radius: 4px;
-    }
+  pre::-webkit-scrollbar {
+    height: 16px;
+    background: transparent;
+  }
 
-    pre::-webkit-scrollbar-thumb:hover {
-        background: rgb(23 22 42);
-    }
+  pre::-webkit-scrollbar-thumb {
+    background: rgb(3 7 18);
+    border-radius: 4px;
+  }
 
-    pre::-webkit-scrollbar-button {
-        display: none;
-    }
+  pre::-webkit-scrollbar-thumb:hover {
+    background: rgb(23 22 42);
+  }
 
-    pre {
-        scrollbar-width: thin;
-        scrollbar-color: rgb(3 7 18) transparent;
-    }
+  pre::-webkit-scrollbar-button {
+    display: none;
+  }
+
+  pre {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(3 7 18) transparent;
+  }
+  -webkit-scrollbar {
+    height: 16px;
+    background: transparent;
+  }
+
+  -webkit-scrollbar-thumb {
+    background: oklch(21% 0.034 264.665);
+    border-radius: 4px;
+  }
+
+  -webkit-scrollbar-thumb:hover {
+    background: rgb(23 22 42);
+  }
+
+  -webkit-scrollbar-button {
+    display: none;
+  }
+  scrollbar-width: thin;
+  scrollbar-color: oklch(21% 0.034 264.665) transparent;
 }
