@@ -47,7 +47,7 @@ const items: NavigationMenuItem[] = [
         <UButton
           icon="i-simple-icons-x"
           variant="ghost"
-          to="https://x.com/o6r_0"
+          to="https://x.com/sam0uly"
           target="_blank"
           aria-label="X"
         />
