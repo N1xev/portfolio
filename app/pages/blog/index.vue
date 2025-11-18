@@ -34,7 +34,7 @@ const authors = ref([
   >
     <div class="flex w-full items-center justify-between border-b border-dashed border-gray-300 dark:border-gray-700 px-4 sm:px-6 lg:px-8 py-6">
       <div>
-      <h1 class="text-3xl text-center font-bold">My Blog</h1>
+      <h1 class="text-3xl text-center font-bold font-accent">My Blog</h1>
       </div>
 
       <Icon name="i-simple-icons:ollama" size="25"/>

@@ -138,9 +138,7 @@ const formatSelectedDate = computed(() => {
     class="flex flex-col my-px h-full items-center justify-center"
   >
     <!-- Tabs Header -->
-    <div
-      class="w-full border-t border-dashed border-gray-300 dark:border-gray-700"
-    >
+    <div class="w-full">
       <div class="flex">
         <button
           v-for="tab in tabs"
@@ -168,7 +166,9 @@ const formatSelectedDate = computed(() => {
         class="ring-0 rounded-none border-dashed border-x-0 border-gray-300 dark:border-gray-700 border-t border-b md:border-b-0 md:border-r pt-16 flex items-center"
       >
         <div>
-          <h1 class="text-4xl font-bold mb-6 underline decoration-dashed">
+          <h1
+            class="text-4xl font-bold mb-6 underline decoration-dashed decoration-gray-400 dark:decoration-gray-600 font-accent"
+          >
             Let's work together
           </h1>
           <p class="text-lg text-gray-600 dark:text-gray-400 mb-6">
@@ -226,7 +226,9 @@ const formatSelectedDate = computed(() => {
         class="ring-0 rounded-none border-dashed border-x-0 border-gray-300 dark:border-gray-700 border-t border-b md:border-b-0 md:border-r pt-16"
       >
         <div>
-          <h1 class="text-4xl font-bold mb-6 underline decoration-dashed">
+          <h1
+            class="text-4xl font-bold mb-6 underline decoration-dashed decoration-gray-400 dark:decoration-gray-600 font-accent"
+          >
             Book a meeting
           </h1>
           <p class="text-lg text-gray-600 dark:text-gray-400 mb-8">
@@ -357,14 +359,14 @@ const formatSelectedDate = computed(() => {
         <div>
           <h3 class="text-lg font-semibold mb-4">Select a Time:</h3>
           <div
-            class="grid grid-cols-3 gap-2 max-h-[400px] overflow-y-auto pr-2"
+            class="grid grid-cols-4 sm:grid-cols-5 gap-2 max-h-[400px] overflow-y-auto "
           >
             <button
               v-for="time in timeSlots"
               :key="time"
               :disabled="isWeekend(selectedDate)"
               :class="[
-                'px-3 py-2 text-sm border border-dashed rounded-none transition-all duration-300',
+                'py-2 text-sm text-center border border-dashed rounded-none transition-all duration-300',
                 selectedTime === time
                   ? 'bg-gray-200 dark:bg-gray-800 dark:text-gray-200 text-gray-900 border-gray-300 dark:border-gray-700'
                   : 'border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-900',

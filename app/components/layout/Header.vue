@@ -1,112 +1,116 @@
-<script setup lang="ts">
-import type { NavigationMenuItem } from "@nuxt/ui";
+<script lang="ts" setup>
+import type {NavigationMenuItem} from "@nuxt/ui"
 
-const route = useRoute();
-const activeSection = ref('#home');
+const route = useRoute()
+
+const activeSectionId = ref("home")
+
+const isHomePage = computed(() => route.path === "/")
 
 const items = computed<NavigationMenuItem[]>(() => [
-  {
-    label: "Home",
-    to: "#home",
-    active: activeSection.value === "#home",
-  },
-  {
-    label: "About",
-    to: "#about",
-    active: activeSection.value === "#about",
-  },
-/*  {
-    label: "Projects",
-    to: "#projects",
-    active: activeSection.value === "#projects",
-  },*/
-  {
-    label: "Contact",
-    to: "#contact",
-    active: activeSection.value === "#contact",
-  },
+  {label: "Home", to: "/#home", active: isHomePage.value && activeSectionId.value === "home"},
+  {label: "About", to: "/#about", active: isHomePage.value && activeSectionId.value === "about"},
+  {label: "Projects", to: "/#projects", active: isHomePage.value && activeSectionId.value === "projects"},
+  {label: "Contact", to: "/#contact", active: isHomePage.value && activeSectionId.value === "contact"},
   {
     label: "Blog",
     to: "/blog",
     icon: "i-lucide-newspaper",
     active: route.path.startsWith("/blog"),
     variant: "subtle",
-    color: "error",
+    color: "error" as const,
   },
-]);
+])
 
-onMounted(() => {
-  // Initialize from URL hash if exists
-  if (route.hash) {
-    activeSection.value = route.hash;
+let observer: IntersectionObserver | null = null
+
+const setupObserver = () => {
+  observer?.disconnect()
+
+  if (!isHomePage.value) {
+    activeSectionId.value = ""
+    return
   }
 
-  // Intersection Observer to detect which section is in view
-  const sections = ['#home', '#about', '#projects', '#contact'];
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const id = `#${entry.target.id}`;
-          activeSection.value = id;
-          // Optional: update URL hash without scrolling
-          window.history.replaceState(null, '', id);
+  nextTick(() => {
+    const sections = document.querySelectorAll("section[id]")
+
+    observer = new IntersectionObserver(
+        (entries) => {
+          let best: Element | null = null
+          let bestRatio = 0
+
+          entries.forEach((entry) => {
+            if (entry.isIntersecting && entry.intersectionRatio > bestRatio) {
+              bestRatio = entry.intersectionRatio
+              best = entry.target
+            }
+          })
+
+          if (best) {
+            activeSectionId.value = best.getAttribute("id") || ""
+          }
+        },
+        {
+          rootMargin: "-120px 0px -50% 0px",
+          threshold: Array.from({length: 101}, (_, i) => i / 100),
         }
-      });
+    )
+
+    sections.forEach((s) => observer!.observe(s))
+  })
+}
+
+onMounted(() => {
+  if (isHomePage.value) {
+    activeSectionId.value = route.hash ? route.hash.slice(1) : "home"
+  }
+  setupObserver()
+})
+
+watch(
+    () => route.path,
+    () => {
+      setupObserver()
     },
-    {
-      threshold: 0.5, // Section needs to be 50% visible
-      rootMargin: '-100px 0px -100px 0px' // Adjust based on your header height
-    }
-  );
+    {immediate: true}
+)
 
-  // Observe all sections
-  sections.forEach((sectionId) => {
-    const element = document.querySelector(sectionId);
-    if (element) {
-      observer.observe(element);
-    }
-  });
-
-  // Cleanup
-  onUnmounted(() => {
-    observer.disconnect();
-  });
-});
+onUnmounted(() => observer?.disconnect())
 </script>
 
 <template>
   <div
-    class="sticky top-0 z-50 bottom-0 border-b border-dashed border-gray-300 dark:border-gray-700"
+      class="sticky top-0 z-50 bottom-0 border-b border-dashed border-gray-300 dark:border-gray-700"
   >
     <UHeader
-      mode="drawer"
-      class="container border-x border-b-0 backdrop-blur-lg bg-default/90 border-dashed border-gray-300 dark:border-gray-700 max-w-6xl justify-between items-center mx-auto"
+        class="container border-x border-b-0 backdrop-blur-lg bg-default/90 border-dashed border-gray-300 dark:border-gray-700 max-w-6xl justify-between items-center mx-auto"
+        mode="drawer"
     >
-      <template #title> Alaa Elsamouly </template>
+      <template #title> Alaa Elsamouly</template>
 
-      <UNavigationMenu :items="items" />
+      <UNavigationMenu :items="items"/>
 
       <template #right>
-        <UiColorModeButton />
+        <UiColorModeButton/>
 
-        <UTooltip text="Open on GitHub" :kbds="['meta', 'G']">
+        <UTooltip :kbds="['meta', 'G']" text="Open on GitHub">
           <UButton
-            color="gray"
-            variant="ghost"
-            to="https://github.com/N1xev/portfolio"
-            target="_blank"
-            icon="i-simple-icons-github"
-            aria-label="GitHub"
+              aria-label="GitHub"
+              color="neutral"
+              icon="i-simple-icons-github"
+              target="_blank"
+              to="https://github.com/N1xev/portfolio"
+              variant="ghost"
           />
         </UTooltip>
       </template>
 
       <template #body>
         <UNavigationMenu
-          :items="items"
-          orientation="vertical"
-          class="-mx-2.5"
+            :items="items"
+            class="-mx-2.5 rounded-none"
+            orientation="vertical"
         />
       </template>
     </UHeader>

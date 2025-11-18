@@ -1,15 +1,22 @@
-<script setup lang="ts"></script>
 <template>
-  <section id="about" class="flex flex-col my-px h-full items-center justify-center">
+  <section id="about" class="flex flex-col h-full items-center justify-center">
     <!-- First row for the Main card -->
     <div class="grid grid-cols-1 lg:grid-cols-[1fr_1fr] ">
       <UCard class="ring-0 rounded-none border-dashed border-x-0 border-gray-300 dark:border-gray-700 border-b md:border-b-0 border-t-0 pt-16">
-        <h1 class="text-4xl font-bold mb-8 underline decoration-dashed">Get to know me:</h1> 
-        <p class="text-lg text-gray-600 dark:text-gray-400">
+        <h1 class="text-4xl font-bold mb-8 underline decoration-dashed decoration-gray-400 dark:decoration-gray-600 font-accent">Get to know me:</h1> 
+
+
+        <UiTextScramble
+            :className="'text-lg text-gray-600 dark:text-gray-400'"
+            :radius="35"
+            :duration="1.2"
+            :speed="0.5"
+            scrambleChars=".:"
+        >
           I'm <ProseCode>Alaa</ProseCode> Elsamouly, software engineer from <ProseCode>Egypt</ProseCode>, passionate about building real, production-ready applications. I specialize in Go/NodeJS for backend and Bun, Next.js, Nuxt.js for frontend, and I focus on writing clean, <ProseCode>scalable</ProseCode> and <ProseCode>maintainable</ProseCode> code.
           I enjoy building projects that solve real problems—ranging from Discord bots and CLI/TUI tools to full web platforms—and I'm always looking for new challenges to grow my skills.
           My goal is to deliver reliable, efficient solutions and to tackle complex problems with <ProseCode>confidence</ProseCode>.
-        </p>
+        </UiTextScramble>
       </UCard>
       <NuxtImg
           src="/samouly.png"

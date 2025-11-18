@@ -1,12 +1,10 @@
-<script setup lang="ts"></script>
-
 <template>
   <section
     id="home"
-    class="flex flex-col h-[calc(100vh-69px)] border-b border-dashed border-gray-300 dark:border-gray-700 items-center justify-center"
+    class="flex flex-col h-full items-center justify-center"
   >
     <div
-      class="w-full max-w-(--ui-container) mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:grid py-24 sm:py-32 lg:py-40 gap-16 sm:gap-y-24"
+      class="w-full max-w-(--ui-container) mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:grid mobile:py-42 sm:py-50 lg:py-60 gap-16 sm:gap-y-24"
     >
       <div class="text-center">
         <UiSplitText
@@ -23,10 +21,18 @@
           text-align="center"
         />
         <div class="text-lg sm:text-xl/8 text-muted text-balance mt-6">
-          Software engineer from Egypt. Building scalable applications that
-          solve real problems with clean, maintainable code and great user
-          experiences.
+
         </div>
+        <UiTextScramble
+            :className="'text-wrap text-lg sm:text-xl/8 text-muted text-balance text-nowrap mt-6'"
+            :radius="35"
+            :duration="1.2"
+            :speed="0.5"
+            scrambleChars=".:"
+        >
+          Software engineer from Egypt. Building scalable applications that solve real problems with clean, maintainable code and great user
+            experiences.
+        </UiTextScramble>
         <div class="mt-10">
           <div class="flex flex-wrap gap-x-6 gap-y-3 justify-center">
             <UButton

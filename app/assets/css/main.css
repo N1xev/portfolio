@@ -18,7 +18,7 @@
 
 :root {
   word-spacing: -1px;
-  font-family: Monaspace Radon Var;
+  font-family: 'Monaspace Neon Var', 'Monaspace Argon Var', 'Monaspace Xenon Var', 'Monaspace Krypton Var', 'Monaspace Radon Var', monospace;
 
   pre {
     overflow-x: auto;

@@ -38,10 +38,10 @@ if (!page.value) {
     <div class="container justify-between items-center mx-auto px-6 py-8">
       <!-- Back button -->
       <div class="mb-6 flex items-center justify-between">
-        <UButton class="text-sm" variant="ghost" to="/blog">
+        <UButton class="text-sm font-accent" variant="ghost" to="/blog">
           Back to Blog
         </UButton>
-        <UButton variant="ghost" icon="i-heroicons-tag" class="text-sm">
+        <UButton variant="ghost" icon="i-heroicons-tag" class="text-sm font-mono">
           {{ displayTags }}
         </UButton>
       </div>
@@ -60,12 +60,12 @@ if (!page.value) {
       <!-- Post Header -->
       <div class="mb-6">
         <div class="flex items-center justify-between">
-          <h1 class="text-3xl font-bold">{{ post.title }}</h1>
+          <h1 class="text-3xl font-bold font-accent">{{ post.title }}</h1>
           <div class="flex items-center gap-2">
             <UButton
               variant="ghost"
               icon="i-heroicons-calendar"
-              class="text-sm"
+              class="text-sm font-accent"
             >
               {{ formattedDate }}
             </UButton>
@@ -84,13 +84,13 @@ if (!page.value) {
 
       <!-- Post Content -->
       <div
-        class="prose prose-sm prose-headings:text-xl prose-a:text-primary-500"
+        class="prose prose-sm prose-headings:text-xl prose-a:text-primary-500 font-body"
       >
         <ContentRenderer
           v-if="post"
           :value="post"
           color="gray"
-          class="prose prose-sm prose-headings:text-xl prose-a:text-primary-500"
+          class="prose prose-sm prose-headings:text-xl prose-a:text-primary-500 font-body"
         />
       </div>
     </div>

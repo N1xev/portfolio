@@ -71,16 +71,12 @@ const handleClearError = () => {
 <template>
   <NuxtLayout>
     <div class="min-h-screen flex flex-col">
-      <!-- Error Section -->
       <section class="flex flex-col flex-1 items-center justify-center">
-        <!-- Main Error Card -->
         <div class="grid grid-cols-1 lg:grid-cols-2 w-full min-h-[calc(100vh-64px)]">
-          <!-- Left: Error Details -->
           <UCard
             class="ring-0 rounded-none border-dashed border-x-0 border-gray-300 dark:border-gray-700 border-t border-b lg:border-b-0 lg:border-r flex items-center justify-center"
           >
             <div class="text-center lg:text-left px-8">
-              <!-- Error Code -->
               <div class="mb-6">
                 <span
                   class="inline-block text-8xl font-bold font-mono border-4 border-dashed border-gray-300 dark:border-gray-700 px-8 py-4 rounded-none"
@@ -90,16 +86,14 @@ const handleClearError = () => {
               </div>
 
               <!-- Error Title -->
-              <h1 class="text-4xl font-bold mb-4 underline decoration-dashed">
+              <h1 class="text-4xl font-bold mb-4 underline decoration-dashed font-accent">
                 {{ errorTitle }}
               </h1>
 
-              <!-- Error Message -->
               <p class="text-lg text-gray-600 dark:text-gray-400 mb-8">
                 {{ errorMessage }}
               </p>
 
-              <!-- Technical Details (only in dev mode) -->
               <div
                 v-if="error?.statusMessage"
                 class="p-4 border border-dashed border-gray-300 dark:border-gray-700 rounded-none bg-gray-50 dark:bg-gray-900"
@@ -111,14 +105,12 @@ const handleClearError = () => {
             </div>
           </UCard>
 
-          <!-- Right: Actions -->
           <UCard
             class="ring-0 rounded-none border-dashed border-x-0 border-gray-300 dark:border-gray-700 border-t flex items-center justify-center"
           >
             <div class="w-full px-8">
               <h2 class="text-2xl font-semibold mb-6">What can you do?</h2>
 
-              <!-- Suggestions -->
               <div class="space-y-4 mb-8">
                 <button
                   v-for="(suggestion, index) in suggestions"
@@ -137,7 +129,6 @@ const handleClearError = () => {
                 </button>
               </div>
 
-              <!-- Additional Help -->
               <div
                 class="p-4 border border-dashed border-gray-300 dark:border-gray-700 rounded-none"
               >
@@ -170,7 +161,6 @@ const handleClearError = () => {
           </UCard>
         </div>
 
-        <!-- Bottom Action Bar -->
         <div class="w-full border-t border-dashed border-gray-300 dark:border-gray-700">
           <div class="flex flex-col sm:flex-row">
             <button
