@@ -25,6 +25,8 @@ const items = computed<NavigationMenuItem[]>(() => [
 let observer: IntersectionObserver | null = null
 
 const setupObserver = () => {
+  if (process.server) return
+
   observer?.disconnect()
 
   if (!isHomePage.value) {
@@ -53,7 +55,7 @@ const setupObserver = () => {
         },
         {
           rootMargin: "-120px 0px -50% 0px",
-          threshold: Array.from({length: 101}, (_, i) => i / 100),
+          threshold: Array.from({ length: 101 }, (_, i) => i / 100),
         }
     )
 
@@ -65,16 +67,16 @@ onMounted(() => {
   if (isHomePage.value) {
     activeSectionId.value = route.hash ? route.hash.slice(1) : "home"
   }
-  setupObserver()
-})
 
-watch(
-    () => route.path,
-    () => {
-      setupObserver()
-    },
-    {immediate: true}
-)
+  setupObserver()
+
+  watch(
+      () => route.path,
+      () => {
+        setupObserver()
+      }
+  )
+})
 
 onUnmounted(() => observer?.disconnect())
 </script>
