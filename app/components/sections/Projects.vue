@@ -125,13 +125,13 @@ const projects = [
                 </div>
 
                 <div
-                    class="absolute inset-0 bg-white/90 dark:bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4"
+                    class="absolute inset-0 bg-gray-300/70 dark:bg-black/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4"
                 >
                   <UButton
                       v-if="project.links.github"
                       :to="project.links.github"
                       class="rounded-none pointer-events-auto"
-                      color="secondary"
+                      color="neutral"
                       label="View Code"
                       size="md"
                       target="_blank"
