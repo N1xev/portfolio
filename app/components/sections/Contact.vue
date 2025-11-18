@@ -163,7 +163,7 @@ const formatSelectedDate = computed(() => {
     >
       <!-- Left: Message -->
       <UCard
-        class="ring-0 rounded-none border-dashed border-x-0 border-gray-300 dark:border-gray-700 border-t border-b md:border-b-0 md:border-r pt-16 flex items-center"
+        class="ring-0 rounded-none border-dashed border-x-0 border-gray-300 dark:border-gray-700 border-t border-b md:border-b-0 md:border-r sm:py-46 py-12 flex items-center"
       >
         <div>
           <h1

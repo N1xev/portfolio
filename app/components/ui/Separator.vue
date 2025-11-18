@@ -19,7 +19,6 @@
         class="text-gray-300 dark:text-gray-700 hidden sm:block"
       />
 
-      <!-- نسخة خاصة بالموبايل فقط: خطوط أقل ومسافات أكبر -->
       <line
         v-for="n in 30"
         :key="'mobile-' + n"

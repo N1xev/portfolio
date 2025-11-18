@@ -25,7 +25,7 @@ const items = computed<NavigationMenuItem[]>(() => [
 let observer: IntersectionObserver | null = null
 
 const setupObserver = () => {
-  if (process.server) return
+  if (import.meta.server) return
 
   observer?.disconnect()
 
@@ -54,7 +54,7 @@ const setupObserver = () => {
           }
         },
         {
-          rootMargin: "-120px 0px -50% 0px",
+          rootMargin: "-100px 0px -70% 0px",
           threshold: Array.from({ length: 101 }, (_, i) => i / 100),
         }
     )
