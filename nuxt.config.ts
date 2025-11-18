@@ -12,7 +12,6 @@ export default defineNuxtConfig({
     "@nuxt/image",
     "@nuxt/ui",
     "@nuxtjs/color-mode",
-    "@nuxthub/core",
   ],
   css: ["~/assets/css/main.css"],
 
