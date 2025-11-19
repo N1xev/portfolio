@@ -12,6 +12,7 @@ export default defineNuxtConfig({
     "@nuxt/ui",
     "@nuxtjs/color-mode",
     "@nuxthub/core",
+      "nuxt-studio",
   ],
   css: ["~/assets/css/main.css"],
   content: {
@@ -26,7 +27,15 @@ export default defineNuxtConfig({
           api: 'https://api.nuxt.studio'
       },
   },
-  vite: {
+    studio: {
+        repository: {
+            provider: 'github',
+            owner: 'N1xev',
+            repo: 'portfolio',
+            branch: 'main',
+        }
+    },
+    vite: {
     plugins: [tailwindcss()],
   },
   nitro: {
