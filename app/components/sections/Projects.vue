@@ -18,7 +18,7 @@ const projects = [
     tech: ["Nuxt 4", "tailwindcss", "Bun", "TypeScript", "vue"],
     links: {
       github: "https://github.com/N1xev/portfolio",
-      demo: "https://samouly.netlify.app/",
+      demo: "https://samouly.nuxt.dev/",
     },
   },
   {
@@ -45,7 +45,7 @@ const projects = [
     tech: ["Nuxt 4", "tailwindcss", "Bun", "TypeScript", "vue"],
     links: {
       github: "https://github.com/N1xev/portfolio",
-      demo: "https://samouly.netlify.app/",
+      demo: "https://samouly.nuxt.dev/",
     },
   },
   {
