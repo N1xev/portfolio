@@ -14,7 +14,6 @@ export default defineNuxtConfig({
     "@nuxtjs/color-mode",
   ],
   css: ["~/assets/css/main.css"],
-
   content: {
     build: {
       markdown: {
