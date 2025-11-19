@@ -1,26 +1,3 @@
-<script setup lang="ts">
-/*
-import type { NavigationMenuItem } from "@nuxt/ui";
-
-const items: NavigationMenuItem[] = [
-  {
-    label: "Figma Kit",
-    to: "https://go.nuxt.com/figma-ui",
-    target: "_blank",
-  },
-  {
-    label: "Playground",
-    to: "https://stackblitz.com/edit/nuxt-ui",
-    target: "_blank",
-  },
-  {
-    label: "Releases",
-    to: "https://github.com/nuxt/ui/releases",
-    target: "_blank",
-  },
-]; */
-</script>
-
 <template>
   <div
     class="bottom-0 backdrop-blur-md bg-default/90 border-t border-dashed border-gray-300 dark:border-gray-700"
@@ -33,9 +10,6 @@ const items: NavigationMenuItem[] = [
           Copyright © {{ new Date().getFullYear() }} | Alaa Elsamouly
         </p>
       </template>
-
-      <!-- <UNavigationMenu :items="items" variant="link" /> -->
-
       <template #right>
         <UButton
           icon="i-simple-icons-discord"
