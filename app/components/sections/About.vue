@@ -4,8 +4,6 @@
     <div class="grid grid-cols-1 lg:grid-cols-[1fr_1fr] ">
       <UCard class="ring-0 rounded-none border-dashed border-x-0 border-gray-300 dark:border-gray-700 border-b md:border-b-0 border-t-0 pt-16">
         <h1 class="text-4xl font-bold mb-8 underline decoration-dashed decoration-gray-400 dark:decoration-gray-600 font-accent">Get to know me:</h1>
-
-
         <UiTextScramble
             :class-name="'text-lg text-gray-600 dark:text-gray-400'"
             :radius="35"

@@ -171,10 +171,16 @@ const formatSelectedDate = computed(() => {
           >
             Let's work together
           </h1>
-          <p class="text-lg text-gray-600 dark:text-gray-400 mb-6">
+          <UiTextScramble
+              :class-name="'text-lg text-gray-600 dark:text-gray-400 mb-6'"
+              :radius="35"
+              :duration="1.2"
+              :speed="0.5"
+              scramble-chars=".:"
+          >
             I'm always open to discussing new projects, creative ideas, or
             opportunities to be part of your vision.
-          </p>
+          </UiTextScramble>
           <p class="text-base text-gray-500 dark:text-gray-500">
             Currently available for freelance work and open source
             collaborations.
@@ -231,10 +237,17 @@ const formatSelectedDate = computed(() => {
           >
             Book a meeting
           </h1>
-          <p class="text-lg text-gray-600 dark:text-gray-400 mb-8">
+
+          <UiTextScramble
+              :class-name="'text-lg text-gray-600 dark:text-gray-400 mb-8'"
+              :radius="35"
+              :duration="1.2"
+              :speed="0.5"
+              scramble-chars=".:"
+          >
             Select a date and time that works best for you. You'll be redirected
             to complete your booking.
-          </p>
+          </UiTextScramble>
 
           <!-- User Info Form -->
           <div class="space-y-4 mb-8">
@@ -245,7 +258,6 @@ const formatSelectedDate = computed(() => {
                 class="border-dashed"
                 :ui="{
                   base: 'rounded-none',
-                  border: 'border-dashed',
                 }"
               />
             </div>
@@ -258,7 +270,6 @@ const formatSelectedDate = computed(() => {
                 class="border-dashed"
                 :ui="{
                   base: 'rounded-none',
-                  border: 'border-dashed',
                 }"
               />
             </div>
