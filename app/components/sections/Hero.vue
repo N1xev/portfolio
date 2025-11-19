@@ -8,7 +8,7 @@
     >
       <div class="text-center">
         <UiSplitText
-          text="Consider this your invetation."
+            text="Consider this your invitation."
           class-name="text-5xl sm:text-7xl font-semibold text-center"
           :delay="100"
           :duration="1.2"
