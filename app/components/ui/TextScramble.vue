@@ -36,7 +36,7 @@ const initializeScrambleText = () => {
   if (!pElement) return;
 
   splitText = new SplitText(pElement, {
-    type: 'chars',
+    type: 'words,chars',
     charsClass: 'inline-block will-change-transform'
   });
 
@@ -100,8 +100,8 @@ watch([() => props.radius, () => props.duration, () => props.speed, () => props.
 
 <template>
   <div ref="rootRef" :class="`scramble-text ${className}`" :style="style">
-    <p>
-      <slot></slot>
+    <p class="break-normal">
+      <slot/>
     </p>
   </div>
 </template>

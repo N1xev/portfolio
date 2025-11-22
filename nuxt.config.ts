@@ -15,7 +15,16 @@ export default defineNuxtConfig({
       "nuxt-studio",
   ],
   css: ["~/assets/css/main.css"],
-  content: {
+    runtimeConfig: {
+        githubToken: process.env.NUXT_GITHUB_TOKEN,
+        public: {
+            githubUsername: process.env.NUXT_PUBLIC_GITHUB_USERNAME
+        }
+    },
+    hub: {
+        database: true
+    },
+    content: {
     build: {
       markdown: {
         highlight: {

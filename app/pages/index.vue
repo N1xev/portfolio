@@ -4,6 +4,8 @@
     <UiSeparator />
     <SectionsAbout />
     <UiSeparator />
+    <SectionsGitHub/>
+    <UiSeparator/>
     <SectionsProjects />
     <UiSeparator />
     <SectionsContact />
