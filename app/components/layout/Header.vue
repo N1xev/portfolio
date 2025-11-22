@@ -10,6 +10,7 @@ const isHomePage = computed(() => route.path === "/")
 const items = computed<NavigationMenuItem[]>(() => [
   {label: "Home", to: "/#home", active: isHomePage.value && activeSectionId.value === "home"},
   {label: "About", to: "/#about", active: isHomePage.value && activeSectionId.value === "about"},
+  {label: "Activity", to: "/#github", active: isHomePage.value && activeSectionId.value === "github"},
   {label: "Projects", to: "/#projects", active: isHomePage.value && activeSectionId.value === "projects"},
   {label: "Contact", to: "/#contact", active: isHomePage.value && activeSectionId.value === "contact"},
   {

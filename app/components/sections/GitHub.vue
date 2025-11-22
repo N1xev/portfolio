@@ -1,16 +1,39 @@
 <script setup lang="ts">
-const {data: githubData, error} = await useFetch('/api/github-stats', {lazy: false})
+interface ContributionDay {
+  date: string
+  count: number
+}
+
+interface GithubStatsResponse {
+  stats: {
+    repos: number
+    stars: number
+    contributions: number
+    languages: string[]
+    organizations: string[]
+  }
+  contributions: ContributionDay[]
+  cachedAt: string
+}
+
+interface GridDay {
+  date: string | null
+  count: number
+}
+
+const {data: githubData, error} = await useFetch<GithubStatsResponse>('/api/github-stats', {lazy: false})
 
 const stats = computed(() => githubData.value?.stats || {
   repos: 0,
   stars: 0,
   contributions: 0,
-  languages: []
+  languages: [],
+  organizations: []
 })
 
 const contributionData = computed(() => githubData.value?.contributions || [])
 
-const getContributionColor = (count: number) => {
+const getContributionColor = (count: number): string => {
   if (count === 0) return 'bg-gray-100 dark:bg-gray-800'
   if (count < 3) return 'bg-teal-200 dark:bg-teal-900'
   if (count < 6) return 'bg-teal-400 dark:bg-teal-700'
@@ -18,14 +41,17 @@ const getContributionColor = (count: number) => {
   return 'bg-teal-800 dark:bg-teal-400'
 }
 
-const getWeeklyData = () => {
+const getWeeklyData = (): GridDay[][] => {
   const data = contributionData.value
   if (!data.length) return []
 
-  const weeks = []
-  let currentWeek = []
+  const weeks: GridDay[][] = []
+  let currentWeek: GridDay[] = []
 
-  const firstDate = new Date(data[0].date)
+  const firstEntry = data[0]
+  if (!firstEntry) return []
+
+  const firstDate = new Date(firstEntry.date)
   const firstDayOfWeek = firstDate.getDay()
 
   for (let i = 0; i < firstDayOfWeek; i++) {
@@ -33,7 +59,7 @@ const getWeeklyData = () => {
   }
 
   data.forEach((day) => {
-    currentWeek.push(day)
+    currentWeek.push({date: day.date, count: day.count})
     if (currentWeek.length === 7) {
       weeks.push(currentWeek)
       currentWeek = []
@@ -60,23 +86,29 @@ const getMonthLabels = () => {
   const CELL_TOTAL = 16
 
   weeks.forEach((week, weekIndex) => {
-    const dayWithDate = week.find(d => d.date !== null)
+    const dayWithDate = week.find((d): d is { date: string; count: number } => d.date !== null)
+
     if (!dayWithDate) return
 
     const month = new Date(dayWithDate.date).getMonth()
     if (month === lastMonth) return
 
     const dayIndex = week.findIndex(d => d.date !== null)
+
     const offset = weekIndex * CELL_TOTAL + dayIndex * CELL_TOTAL + 8
 
-    labels.push({label: monthNames[month], offset})
+    labels.push({
+      label: monthNames[month] ?? '',
+      offset
+    })
+
     lastMonth = month
   })
 
   return labels
 }
 
-const getLanguageColor = (lang: string) => {
+const getLanguageColor = (lang: string): string => {
   const colors: Record<string, string> = {
     'Go': 'bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200',
     'JavaScript': 'bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200',
@@ -86,7 +118,6 @@ const getLanguageColor = (lang: string) => {
   }
   return colors[lang] || 'bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200'
 }
-
 </script>
 
 <template>
