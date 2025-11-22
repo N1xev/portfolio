@@ -15,6 +15,8 @@
 const appConfig = useAppConfig();
 
 updateAppConfig(appConfig);
+const baseUrl = "https://samouly.is-a.dev";
+const route = useRoute();
 
 useSeoMeta({
   title: 'Alaa El-Samouly',
@@ -23,17 +25,16 @@ useSeoMeta({
   description: "a software engineer from Egypt.",
   ogDescription: "a software engineer from Egypt.",
   twitterDescription: "a software engineer from Egypt.",
-  ogUrl: 'https://samouly.dev',
-  ogImage: '/samouly-banner.png',
-  icon: '/samouly.png',
-  twitterCard: '/samouly.png',
-  twitterImage: '/samouly-banner.png'
+  ogUrl: baseUrl + route.path,
+  ogImage: `${baseUrl}/samouly-banner.png`,
+  twitterCard: 'summary_large_image',
+  twitterImage: `${baseUrl}/samouly-banner.png`
 })
 
 useHead({
-  htmlAttrs: {
-    lang: 'en'
-  }
+  link: [
+    {rel: 'canonical', href: baseUrl + route.path}
+  ]
 })
 </script>
 
