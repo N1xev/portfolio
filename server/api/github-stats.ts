@@ -1,27 +1,40 @@
 export default defineEventHandler(async (event) => {
+    const CACHE_KEY = 'github:stats:v2'
+    const CACHE_TTL = 24 * 60 * 60
+
+    const cached = await useStorage().getItem(CACHE_KEY)
+    if (cached) {
+        setHeader(event, 'Cache-Control', 's-maxage=86400, stale-while-revalidate=3600')
+        return cached
+    }
+
     const config = useRuntimeConfig()
     const username = config.public.githubUsername
     const token = config.githubToken
 
     try {
-        const user = await $fetch(`https://api.github.com/users/${username}`, {
-            headers: {Authorization: `token ${token}`}
-        })
-
-        const orgs: { login: string }[] = await $fetch(`https://api.github.com/user/orgs`, {
-            headers: {Authorization: `token ${token}`}
+        const orgs: { login: string }[] = await $fetch('https://api.github.com/user/orgs', {
+            headers: {
+                Authorization: `token ${token}`,
+                'User-Agent': 'Samouly'
+            }
         })
 
         const orgLogins = orgs.map(org => org.login)
 
         const fetchAllRepos = async () => {
             const allRepos: any[] = []
-
             let page = 1
+
             while (true) {
                 const repos: any[] = await $fetch(
                     `https://api.github.com/user/repos?per_page=100&page=${page}`,
-                    {headers: {Authorization: `token ${token}`}}
+                    {
+                        headers: {
+                            Authorization: `token ${token}`,
+                            'User-Agent': 'Samouly'
+                        }
+                    }
                 )
                 if (repos.length === 0) break
                 allRepos.push(...repos)
@@ -34,7 +47,12 @@ export default defineEventHandler(async (event) => {
                 while (true) {
                     const orgRepos: any[] = await $fetch(
                         `https://api.github.com/orgs/${org}/repos?per_page=100&page=${page}`,
-                        {headers: {Authorization: `token ${token}`}}
+                        {
+                            headers: {
+                                Authorization: `token ${token}`,
+                                'User-Agent': 'Samouly'
+                            }
+                        }
                     )
                     if (orgRepos.length === 0) break
                     allRepos.push(...orgRepos)
@@ -42,12 +60,10 @@ export default defineEventHandler(async (event) => {
                     page++
                 }
             }
-
             return allRepos
         }
 
         const allRepos = await fetchAllRepos()
-
         const uniqueRepos = allRepos.filter(
             (repo, index, self) => index === self.findIndex(r => r.id === repo.id)
         )
@@ -72,28 +88,29 @@ export default defineEventHandler(async (event) => {
             .map(([lang]) => lang)
 
         const query = `
-      query {
-        user(login: "${username}") {
-          contributionsCollection {
-            contributionCalendar {
-              totalContributions
-              weeks {
-                contributionDays {
-                  contributionCount
-                  date
+            query {
+                user(login: "${username}") {
+                    contributionsCollection {
+                        contributionCalendar {
+                            totalContributions
+                            weeks {
+                                contributionDays {
+                                    contributionCount
+                                    date
+                                }
+                            }
+                        }
+                    }
                 }
-              }
             }
-          }
-        }
-      }
-    `
+        `
 
-        const graphqlResponse = await $fetch('https://api.github.com/graphql', {
+        const graphqlResponse: any = await $fetch('https://api.github.com/graphql', {
             method: 'POST',
             headers: {
                 Authorization: `bearer ${token}`,
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'User-Agent': 'Samouly'
             },
             body: {query}
         })
@@ -106,7 +123,7 @@ export default defineEventHandler(async (event) => {
             }))
         )
 
-        return {
+        const result = {
             stats: {
                 repos: uniqueRepos.length,
                 stars: totalStars,
@@ -114,13 +131,26 @@ export default defineEventHandler(async (event) => {
                 languages: topLanguages,
                 organizations: orgLogins
             },
-            contributions
+            contributions,
+            cachedAt: new Date().toISOString()
         }
+
+        await useStorage().setItem(CACHE_KEY, result, {ttl: CACHE_TTL})
+
+        setHeader(event, 'Cache-Control', 's-maxage=86400, stale-while-revalidate=3600')
+        return result
+
     } catch (error: any) {
         console.error('GitHub API Error:', error)
+
+        if (cached) {
+            setHeader(event, 'X-Cache', 'STALE')
+            return cached
+        }
+
         throw createError({
-            statusCode: 500,
-            message: 'Failed to fetch GitHub data: ' + (error.message || 'Unknown error')
+            statusCode: 503,
+            message: 'GitHub data temporarily unavailable'
         })
     }
 })

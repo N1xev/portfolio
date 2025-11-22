@@ -95,7 +95,7 @@ const getLanguageColor = (lang: string) => {
     <div class="grid grid-cols-1 w-full">
       <UCard
           class="text-center py-12 ring-0 rounded-none border-dashed border-x-0 border-gray-300 dark:border-gray-700 border-t-0">
-        <h1 class="text-5xl underline decoration-dashed decoration-gray-400 dark:decoration-gray-600 font-bold mb-4">
+        <h1 class="text-4xl md:text-5xl underline decoration-dashed decoration-gray-400 dark:decoration-gray-600 font-bold mb-4">
           GitHub Activity</h1>
 
         <div v-if="error" class="p-4 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400">
@@ -105,7 +105,7 @@ const getLanguageColor = (lang: string) => {
 
         <div v-else class="space-y-4 block items-center">
           <UiTextScramble
-              :class-name="'text-lg px-16 text-gray-600 dark:text-gray-400'"
+              :class-name="'text-lg px-4 md:px-16 lg:px-24 text-gray-600 dark:text-gray-400'"
               :radius="35"
               :duration="1.2"
               :speed="0.5"
