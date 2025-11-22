@@ -125,7 +125,7 @@ const getLanguageColor = (lang: string): string => {
 
     <div class="grid grid-cols-1 w-full">
       <UCard
-          class="text-center py-12 ring-0 rounded-none border-dashed border-x-0 border-gray-300 dark:border-gray-700 border-t-0">
+          class="text-center pt-12 pb-6 ring-0 rounded-none border-dashed border-x-0 border-gray-300 dark:border-gray-700 border-t-0">
         <h1 class="text-4xl md:text-5xl underline decoration-dashed decoration-gray-400 dark:decoration-gray-600 font-bold mb-4">
           GitHub Activity</h1>
 
@@ -147,7 +147,7 @@ const getLanguageColor = (lang: string): string => {
           </UiTextScramble>
 
           <div
-              class="md:flex md:flex-col items-center mt-6 pt-6  bg-gray-50 dark:bg-gray-900 border-t border-dashed border-gray-300 dark:border-gray-700">
+              class="md:flex md:flex-col items-center mt-6 pt-6 border-t border-dashed border-gray-300 dark:border-gray-700">
 
             <div class="flex items-center justify-between mb-4">
               <h3 class="text-lg font-semibold">
