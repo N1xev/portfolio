@@ -3,15 +3,15 @@ export default defineAppConfig({
     main: {
       base: "min-h-[calc(100vh-150px)]",
     },
-    colors: {
-      primary: "zinc",
-      secondary: "purple",
-      success: "emerald",
-      info: "blue",
-      warning: "yellow",
-      error: "rose",
-      neutral: "gray",
-    },
+      colors: {
+          primary: "zinc",
+          secondary: "purple",
+          success: "emerald",
+          info: "blue",
+          warning: "yellow",
+          error: "rose",
+          neutral: "gray",
+      },
     contentSurround: {
       slots: {
         root: "grid grid-cols-1 sm:grid-cols-2 gap-0",

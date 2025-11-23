@@ -25,6 +25,7 @@ useSeoMeta({
   description: "a software engineer from Egypt.",
   ogDescription: "a software engineer from Egypt.",
   twitterDescription: "a software engineer from Egypt.",
+  themeColor: '#030712',
   ogUrl: baseUrl + route.path,
   ogImage: `${baseUrl}/samouly-banner.png`,
   twitterCard: 'summary_large_image',

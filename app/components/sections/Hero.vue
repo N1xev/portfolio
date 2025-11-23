@@ -44,7 +44,7 @@
               WareHouse
             </UButton>
             <UButton
-              color="neutral"
+              color="samouly"
               variant="subtle"
               size="xl"
               to="/blog"

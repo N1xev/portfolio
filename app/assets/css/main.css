@@ -1,6 +1,45 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
 
+@font-face {
+  font-family: 'Monaspace Neon Var';
+  src: url('/fonts/Monaspace Neon Var.woff2') format('woff2-variations');
+  font-weight: 100 900;
+}
+
+@font-face {
+  font-family: 'Monaspace Argon Var';
+  src: url('/fonts/Monaspace Argon Var.woff2') format('woff2-variations');
+  font-weight: 100 900;
+}
+
+@font-face {
+  font-family: 'Monaspace Xenon Var';
+  src: url('/fonts/Monaspace Xenon Var.woff2') format('woff2-variations');
+  font-weight: 100 900;
+}
+
+@font-face {
+  font-family: 'Monaspace Krypton Var';
+  src: url('/fonts/Monaspace Krypton Var.woff2') format('woff2-variations');
+  font-weight: 100 900;
+}
+
+@font-face {
+  font-family: 'Monaspace Radon Var';
+  src: url('/fonts/Monaspace Radon Var.woff2') format('woff2-variations');
+  font-weight: 100 900;
+}
+
+/* Font theme variables */
+@theme {
+  --font-sans: 'Monaspace Neon Var', 'Monaspace Argon Var', system-ui, sans-serif;
+  --font-serif: 'Monaspace Xenon Var', Georgia, serif;
+  --font-mono: 'Monaspace Radon Var', monospace;
+}
+
+
+
 @theme static {
   /* Override default gray color */
   --color-gray-50: oklch(96.7% 0.003 264.542);
