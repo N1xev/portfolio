@@ -3,15 +3,15 @@ export default defineAppConfig({
     main: {
       base: "min-h-[calc(100vh-150px)]",
     },
-      colors: {
-          primary: "zinc",
-          secondary: "purple",
-          success: "emerald",
-          info: "blue",
-          warning: "yellow",
-          error: "rose",
-          neutral: "gray",
-      },
+    colors: {
+      primary: "zinc",
+      secondary: "purple",
+      success: "emerald",
+      info: "blue",
+      warning: "yellow",
+      error: "rose",
+      neutral: "gray",
+    },
     contentSurround: {
       slots: {
         root: "grid grid-cols-1 sm:grid-cols-2 gap-0",
@@ -33,11 +33,15 @@ export default defineAppConfig({
       variants: {
         direction: {
           left: {
-            link: ["border-y border-l-0 border-r border-gray-300 dark:border-gray-700 border-dashed"],
+            link: [
+              "border-y border-l-0 border-r border-gray-300 dark:border-gray-700 border-dashed",
+            ],
             linkLeadingIcon: ["group-active:-translate-x-0.5"],
           },
           right: {
-            link: ["text-right border-y border-l border-r-0 border-gray-300 dark:border-gray-700 border-dashed"],
+            link: [
+              "text-right border-y border-l border-r-0 border-gray-300 dark:border-gray-700 border-dashed",
+            ],
             linkLeadingIcon: ["group-active:translate-x-0.5"],
           },
         },

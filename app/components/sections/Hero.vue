@@ -40,11 +40,12 @@
               to="https://github.com/N1xev"
               icon="i-lucide-github"
               target="_blank"
+              class="text-muted hover:text-toned"
             >
               WareHouse
             </UButton>
             <UButton
-              color="samouly"
+              color="neutral"
               variant="subtle"
               size="xl"
               to="/blog"
