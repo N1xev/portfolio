@@ -3,31 +3,31 @@
 
 @font-face {
   font-family: 'Monaspace Neon Var';
-  src: url('/fonts/Monaspace Neon Var.woff2') format('woff2-variations');
+  src: url('@/assets/fonts/Monaspace Neon Var.woff2') format('woff2-variations');
   font-weight: 100 900;
 }
 
 @font-face {
   font-family: 'Monaspace Argon Var';
-  src: url('/fonts/Monaspace Argon Var.woff2') format('woff2-variations');
+  src: url('@/assets/fonts/Monaspace Argon Var.woff2') format('woff2-variations');
   font-weight: 100 900;
 }
 
 @font-face {
   font-family: 'Monaspace Xenon Var';
-  src: url('/fonts/Monaspace Xenon Var.woff2') format('woff2-variations');
+  src: url('@/assets/fonts/Monaspace Xenon Var.woff2') format('woff2-variations');
   font-weight: 100 900;
 }
 
 @font-face {
   font-family: 'Monaspace Krypton Var';
-  src: url('/fonts/Monaspace Krypton Var.woff2') format('woff2-variations');
+  src: url('@/assets/fonts/Monaspace Krypton Var.woff2') format('woff2-variations');
   font-weight: 100 900;
 }
 
 @font-face {
   font-family: 'Monaspace Radon Var';
-  src: url('/fonts/Monaspace Radon Var.woff2') format('woff2-variations');
+  src: url('@/assets/fonts/Monaspace Radon Var.woff2') format('woff2-variations');
   font-weight: 100 900;
 }
 
