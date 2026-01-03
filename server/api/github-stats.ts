@@ -141,7 +141,14 @@ export default defineEventHandler(async (event) => {
         return result
 
     } catch (error: any) {
-        console.error('GitHub API Error:', error)
+        console.error('GitHub API Error:', {
+            message: error?.message,
+            status: error?.response?.status,
+            statusText: error?.response?.statusText,
+            data: error?.data,
+            hasToken: !!token,
+            tokenPrefix: token ? token.substring(0, 10) + '...' : 'NO TOKEN'
+        })
 
         if (cached) {
             setHeader(event, 'X-Cache', 'STALE')
@@ -150,7 +157,7 @@ export default defineEventHandler(async (event) => {
 
         throw createError({
             statusCode: 503,
-            message: 'GitHub data temporarily unavailable'
+            message: `GitHub data temporarily unavailable: ${error?.message || 'Unknown error'}`
         })
     }
 })
