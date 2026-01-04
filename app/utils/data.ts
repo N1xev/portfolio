@@ -11,6 +11,26 @@ export const projects = [
         },
     },
     {
+        title: "bubbleMonitor (bub)",
+        description: "A feature rich terminal system monitor written in Go.",
+        image: "/bub.png",
+        tech: ["Go", "BubbleTea", "lipgloss", "bubbles"],
+        links: {
+            github: "https://github.com/N1xev/bubbleMonitor",
+            demo: null,
+        },
+    },
+    {
+        title: "Samouly Flake",
+        description: "My NixOS setup and dotfiles with home-manager and nix flakes.",
+        image: "/samouly-flake.png",
+        tech: ["Nix", "Bash", "kdl", "conf", "HyprLand", "Niri", "Fabric"],
+        links: {
+            github: "https://github.com/N1xev/samouly-flake",
+            demo: null,
+        },
+    },
+    {
         title: "This Portfolio",
         description: "A simple portfolio built with Nuxt 4, Tailwind, and Bun.",
         image: "/portfolio-preview.png",
@@ -27,7 +47,7 @@ export const projects = [
         tech: ["NextJS", "React", "TypeScript", "FumaDocs", "MDX"],
         links: {
             github: "https://github.com/N1xev/store-app",
-            demo: null,
+            demo: "https://charm-docs.vercel.app/docs/bubbletea",
         },
     },
     {
@@ -48,16 +68,6 @@ export const projects = [
         links: {
             github: "https://github.com/N1xev/store-app",
             demo: "https://samouly-store.vercel.app/",
-        },
-    },
-    {
-        title: "Samouly Flake",
-        description: "My NixOS setup and dotfiles with home-manager and nix flakes.",
-        image: "/samouly-flake.jpg",
-        tech: ["Nix", "Bash", "kdl", "conf"],
-        links: {
-            github: "https://github.com/N1xev/samouly-flake",
-            demo: null,
         },
     },
     {

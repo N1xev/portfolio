@@ -40,7 +40,7 @@ const setupObserver = () => {
 
     observer = new IntersectionObserver(
       (entries) => {
-        let best: Element | null = null
+        let best = null as Element | null
         let bestRatio = 0
 
         entries.forEach((entry) => {
