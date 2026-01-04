@@ -3,6 +3,22 @@ export default defineAppConfig({
     main: {
       base: "min-h-[calc(100vh-150px)]",
     },
+    button: {
+      slots: {
+        base: [
+          'rounded-none',
+          'font-medium',
+          'outline-none',
+          'ring-0',
+          'transition-all duration-200',
+        ],
+      },
+      variants: {
+        variant: {
+          subtle: 'border ring-0 outline-none border-dashed border-gray-500',
+        },
+      },
+    },
     colors: {
       primary: "zinc",
       secondary: "purple",

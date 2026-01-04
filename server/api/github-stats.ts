@@ -112,7 +112,7 @@ export default defineEventHandler(async (event) => {
                 'Content-Type': 'application/json',
                 'User-Agent': 'Samouly'
             },
-            body: {query}
+            body: { query }
         })
 
         const calendar = graphqlResponse.data.user.contributionsCollection.contributionCalendar
@@ -135,21 +135,12 @@ export default defineEventHandler(async (event) => {
             cachedAt: new Date().toISOString()
         }
 
-        await useStorage().setItem(CACHE_KEY, result, {ttl: CACHE_TTL})
+        await useStorage().setItem(CACHE_KEY, result, { ttl: CACHE_TTL })
 
         setHeader(event, 'Cache-Control', 's-maxage=86400, stale-while-revalidate=3600')
         return result
 
     } catch (error: any) {
-        console.error('GitHub API Error:', {
-            message: error?.message,
-            status: error?.response?.status,
-            statusText: error?.response?.statusText,
-            data: error?.data,
-            hasToken: !!token,
-            tokenPrefix: token ? token.substring(0, 10) + '...' : 'NO TOKEN'
-        })
-
         if (cached) {
             setHeader(event, 'X-Cache', 'STALE')
             return cached

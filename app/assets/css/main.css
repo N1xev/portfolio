@@ -55,6 +55,10 @@
   --color-gray-950: #052e16;
 }
 
+* {
+  border-radius: 0px;
+}
+
 :root {
   word-spacing: -1px;
   font-family: 'Monaspace Neon Var', 'Monaspace Argon Var', 'Monaspace Xenon Var', 'Monaspace Krypton Var', 'Monaspace Radon Var', monospace;
@@ -63,6 +67,7 @@
     overflow-x: auto;
     margin-bottom: 3px;
   }
+
   pre code {
     white-space: pre;
     display: block;
@@ -90,6 +95,7 @@
     scrollbar-width: thin;
     scrollbar-color: rgb(3 7 18) transparent;
   }
+
   -webkit-scrollbar {
     height: 16px;
     background: transparent;
@@ -107,6 +113,7 @@
   -webkit-scrollbar-button {
     display: none;
   }
+
   scrollbar-width: thin;
   scrollbar-color: oklch(21% 0.034 264.665) transparent;
 }
