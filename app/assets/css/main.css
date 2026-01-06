@@ -31,11 +31,17 @@
   font-weight: 100 900;
 }
 
+@font-face {
+  font-family: 'ComicMono';
+  src: url('@/assets/fonts/ComicMono.ttf') format('truetype');
+  font-weight: 100 900;
+}
+
 /* Font theme variables */
 @theme {
   --font-sans: 'Monaspace Neon Var', 'Monaspace Argon Var', system-ui, sans-serif;
   --font-serif: 'Monaspace Xenon Var', Georgia, serif;
-  --font-mono: 'Monaspace Radon Var', monospace;
+  --font-mono: 'ComicMono', monospace;
 }
 
 
