@@ -40,10 +40,6 @@ export default defineAppConfig({
     },
 
     card: {
-      slots: {
-        root: 'rounded-none overflow-hidden ring-0',
-
-      },
       variants: {
         variant: {
           outline: { root: 'ring-0 border border-dashed border-default' },
@@ -55,13 +51,6 @@ export default defineAppConfig({
     },
 
     input: {
-      slots: {
-        root: 'relative inline-flex items-center',
-        base: [
-          'w-full rounded-none border-0 appearance-none placeholder:text-dimmed focus:outline-none disabled:cursor-not-allowed disabled:opacity-75',
-          'transition-colors',
-        ],
-      },
       variants: {
         variant: {
           outline: 'text-highlighted ring-0 border border-dashed border-accented',
@@ -80,13 +69,6 @@ export default defineAppConfig({
     },
 
     textarea: {
-      slots: {
-        root: 'relative inline-flex items-center',
-        base: [
-          'w-full rounded-none border-0 appearance-none placeholder:text-dimmed focus:outline-none disabled:cursor-not-allowed disabled:opacity-75',
-          'transition-colors',
-        ],
-      },
       variants: {
         variant: {
           outline: 'text-highlighted ring-0 border border-dashed border-accented',
@@ -157,7 +139,7 @@ export default defineAppConfig({
 
     modal: {
       slots: {
-        overlay: 'fixed inset-0 backdrop-blur-sm',
+        overlay: 'fixed inset-0 backdrop-blur-md',
         content: 'bg-default divide-y divide-dashed divide-gray-300 dark:divide-gray-700 flex flex-col focus:outline-none',
       },
       variants: {
@@ -204,11 +186,6 @@ export default defineAppConfig({
       card: {
         slots: {
           base: 'ring-0 border border-dashed rounded-none',
-        },
-      },
-      cardGroup: {
-        slots: {
-          root: 'ring-0',
         },
       },
       note: {
