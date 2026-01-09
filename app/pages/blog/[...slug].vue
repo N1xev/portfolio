@@ -20,6 +20,7 @@ const displayTags = computed(() => {
 });
 
 const route = useRoute();
+const config = useRuntimeConfig();
 
 const { data: page } = await useAsyncData(route.path, () =>
   queryCollection("blog").path(route.path).first(),
@@ -31,6 +32,28 @@ if (!page.value) {
     fatal: true,
   });
 }
+
+const siteUrl = config.public.siteUrl || 'https://samouly.is-a.dev';
+const fullUrl = `${siteUrl}${route.path}`;
+const ogImage = post.value?.meta?.image
+  ? `${siteUrl}${post.value.meta.image}`
+  : `${siteUrl}/og-default.png`;
+
+useSeoMeta({
+  title: post.value?.title,
+  description: post.value?.description,
+  ogTitle: post.value?.title,
+  ogDescription: post.value?.description,
+  ogImage: ogImage,
+  ogUrl: fullUrl,
+  ogType: 'article',
+  twitterCard: 'summary_large_image',
+  twitterTitle: post.value?.title,
+  twitterDescription: post.value?.description,
+  twitterImage: ogImage,
+  articlePublishedTime: post.value?.meta?.date,
+  articleTag: post.value?.meta?.tags,
+});
 </script>
 
 <template>

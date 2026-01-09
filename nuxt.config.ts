@@ -19,6 +19,7 @@ export default defineNuxtConfig({
     githubToken: process.env.NUXT_GITHUB_TOKEN,
     public: {
       githubUsername: process.env.NUXT_PUBLIC_GITHUB_USERNAME,
+      siteUrl: "https://samouly.is-a.dev",
     },
   },
   hub: {
@@ -42,7 +43,9 @@ export default defineNuxtConfig({
       owner: "N1xev",
       repo: "portfolio",
       branch: "main",
+      rootDir: 'blog'
     },
+    route: '/nahody',
   },
   vite: {
     plugins: [tailwindcss()],
