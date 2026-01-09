@@ -41,57 +41,43 @@ if (!page.value) {
         <UButton class="text-sm font-accent" variant="ghost" to="/blog">
           Back to Blog
         </UButton>
-        <UButton variant="ghost" icon="i-heroicons-tag" class="text-sm font-mono">
+        <UButton variant="ghost" icon="i-heroicons-tag" class="text-sm md:flex hidden font-mono">
           {{ displayTags }}
         </UButton>
+        <UButton variant="ghost" icon="i-heroicons-calendar" class="text-sm flex md:hidden font-accent">
+          {{ formattedDate }}
+        </UButton>
       </div>
-
+      <UButton variant="ghost" icon="i-heroicons-tag" class="text-sm flex md:hidden font-mono">
+        {{ displayTags }}
+      </UButton>
       <!-- Table of contentooo -->
-      <UContentToc
-        class="border-dashed border-y md:hidden border-gray-300 dark:border-gray-700 md:border-x mb-4"
-        title="On this blog post!"
-        highlight
-        highlight-color="gray"
-        color="gray"
-        :defaultOpen="false"
-        :links="page.body.toc.links"
-      />
+      <UContentToc class="border-dashed border-y md:hidden border-gray-300 dark:border-gray-700 md:border-x mb-4"
+        title="On this blog post!" highlight highlight-color="gray" color="gray" :defaultOpen="false"
+        :links="page.body.toc.links" />
 
       <!-- Post Header -->
       <div class="mb-6">
         <div class="flex items-center justify-between">
           <h1 class="text-3xl font-bold font-accent">{{ post.title }}</h1>
+
           <div class="flex items-center gap-2">
-            <UButton
-              variant="ghost"
-              icon="i-heroicons-calendar"
-              class="text-sm font-accent"
-            >
+            <UButton variant="ghost" icon="i-heroicons-calendar" class="text-sm md:flex hidden font-accent">
               {{ formattedDate }}
             </UButton>
           </div>
         </div>
       </div>
-      
+
       <!-- Post Image -->
       <div v-if="post.meta.image" class="mb-6">
-        <NuxtImg
-          :src="post.meta.image"
-          alt="Post Image"
-          class="w-full max-h-130 object-cover rounded-lg"
-        />
+        <NuxtImg :src="post.meta.image" alt="Post Image" class="w-full max-h-130 object-cover rounded-lg" />
       </div>
 
       <!-- Post Content -->
-      <div
-        class="prose prose-sm prose-headings:text-xl prose-a:text-primary-500 font-body"
-      >
-        <ContentRenderer
-          v-if="post"
-          :value="post"
-          color="gray"
-          class="prose prose-sm prose-headings:text-xl prose-a:text-primary-500 font-body"
-        />
+      <div class="prose prose-sm prose-headings:text-xl prose-a:text-primary-500 font-body">
+        <ContentRenderer v-if="post" :value="post" color="gray"
+          class="prose prose-sm px-2 md:px-8 prose-headings:text-xl prose-a:text-primary-500 font-body" />
       </div>
     </div>
     <UiPrevNextPost />

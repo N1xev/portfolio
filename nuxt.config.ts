@@ -12,54 +12,57 @@ export default defineNuxtConfig({
     "@nuxt/ui",
     "@nuxtjs/color-mode",
     "@nuxthub/core",
-      "nuxt-studio",
+    "nuxt-studio",
   ],
   css: ["~/assets/css/main.css"],
-    runtimeConfig: {
-        githubToken: process.env.NUXT_GITHUB_TOKEN,
-        public: {
-            githubUsername: process.env.NUXT_PUBLIC_GITHUB_USERNAME
-        }
+  runtimeConfig: {
+    githubToken: process.env.NUXT_GITHUB_TOKEN,
+    public: {
+      githubUsername: process.env.NUXT_PUBLIC_GITHUB_USERNAME,
     },
-    hub: {
-        database: true
-    },
-    content: {
+  },
+  hub: {
+    database: true,
+  },
+  content: {
     build: {
       markdown: {
         highlight: {
-          langs: ["lua", "go"],
+          langs: ["lua", "go", "nix"],
         },
       },
     },
-      preview: {
-          api: 'https://api.nuxt.studio'
-      },
-  },
-    studio: {
-        repository: {
-            provider: 'github',
-            owner: 'N1xev',
-            repo: 'portfolio',
-            branch: 'main',
-        }
+    preview: {
+      api: "https://api.nuxt.studio",
     },
-    vite: {
+  },
+  studio: {
+    repository: {
+      provider: "github",
+      owner: "N1xev",
+      repo: "portfolio",
+      branch: "main",
+    },
+  },
+  vite: {
     plugins: [tailwindcss()],
   },
   nitro: {
-      experimental: {
-          openAPI: true
-      }
+    experimental: {
+      openAPI: true,
+    },
   },
   app: {
     head: {
       htmlAttrs: {
         lang: "en",
-        style: 'scroll-behavior: smooth'
+        style: "scroll-behavior: smooth",
       },
-      link: [{ rel: "icon", type: "image/x-icon", href: "/samouly.png" }],
+      link: [
+        { rel: "icon", type: "image/x-icon", href: "/samouly.png" },
+
+      ],
     },
-    pageTransition: { name: 'page', mode: 'in-out' },
+    pageTransition: { name: "page", mode: "in-out" },
   },
 });
